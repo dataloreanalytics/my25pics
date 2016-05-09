@@ -1,0 +1,396 @@
+/*------------------------------------------------------------------
+Project:    Cubic
+Author:     Yevgeny S.
+URL:        https://twitter.com/YevSim
+Version:    1.0
+Created:        03/04/2014
+Last change:    15/04/2014
+-------------------------------------------------------------------*/
+
+/* ===== Helper ===== */
+
+.transition-new(@type, @time: 300ms) {
+    -webkit-transition: @type @time;
+       -moz-transition: @type @time;
+            transition: @type @time;
+}
+.gradient(@color-one, @color-two) {
+    background-image: -webkit-linear-gradient(to bottom, @color-one 0%, @color-two 100%);
+       background-image: -moz-linear-gradient(to bottom, @color-one 0%, @color-two 100%);
+         background-image: -o-linear-gradient(to bottom, @color-one 0%, @color-two 100%);
+            background-image: linear-gradient(to bottom, @color-one 0%, @color-two 100%);
+}
+.select-none {
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+         -o-user-select: none;
+            user-select: none;
+}
+.square(@size) {
+    height: @size;
+    width: @size;
+    line-height: @size;
+    text-align: center;
+}
+.box-shadow-none {
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+}
+.delay(@time) {
+    -webkit-animation-delay: @time;
+       -moz-animation-delay: @time;
+            animation-delay: @time;
+}
+
+@time-base: 300ms;
+
+.delay-1 {
+    .delay(@time-base);
+}
+.delay-2 {
+    .delay(@time-base*2);
+}
+.delay-3 {
+    .delay(@time-base*3);
+}
+.delay-4 {
+    .delay(@time-base*4);
+}
+.delay-5 {
+    .delay(@time-base*5);
+}
+.delay-6 {
+    .delay(@time-base*6);
+}
+.delay-7 {
+    .delay(@time-base*7);
+}
+.delay-8 {
+    .delay(@time-base*8);
+}
+.margin {
+    padding: 2.5px 0;
+}
+@media (max-width: @screen-xs-max) {
+    .margin {
+        padding: 5px 0;
+    }
+}
+@media (min-width: @screen-md-min) {
+    .transparent {
+        opacity: 0;
+    }
+    .visible {
+        opacity: 1;
+        .transition-new(opacity, 1s);
+    }
+}
+/* ===== Colors ===== */
+
+@red: #e74c3c;
+@red-dark: #c0392b;
+@blue: #3498db;
+@blue-dark: #2980b9;
+@green: #2ecc71;
+@green-dark: #27ae60;
+@asphalt: #34495e;
+@asphalt-dark: #2c3e50;
+
+/* ===== Typography ===== */
+
+@font-family-base: 'Open Sans', sans-serif;
+@headings-font-family: 'Raleway', sans-serif;
+@headings-font-weight: 200;
+
+.body-red a {
+    color: @red;
+}
+.body-red a:hover,
+.body-red a:focus {
+    color: @red-dark;
+}
+.body-blue a {
+    color: @blue;
+}
+.body-blue a:hover,
+.body-blue a:focus {
+    color: @blue-dark;
+}
+.body-green a {
+    color: @green;
+}
+.body-green a:hover,
+.body-green a:focus {
+    color: @green-dark;
+}
+.body-asphalt a {
+    color: @asphalt;
+}
+.body-asphalt a:hover,
+.body-asphalt a:focus {
+    color: @asphalt-dark;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid @gray-light;
+    border-bottom: 1px solid @gray-light;
+    padding: 1px 0;
+    margin: 30px 0;
+}
+.bg-color hr,
+.bg-color-dark hr {
+    border-color: white;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.5;
+}
+p {
+    margin: 30px 0;
+    font-weight: 300;
+    font-size: @font-size-base+2;
+    line-height: 2;
+}
+
+/* ===== Buttons ===== */
+
+.btn {
+    border-radius: 0;
+    padding: 15px 40px;
+    -webkit-transition: background 300ms, color 300ms;
+       -moz-transition: background 300ms, color 300ms;
+            transition: background 300ms, color 300ms;
+}
+
+/*** Button Glass ***/
+
+.btn-glass {
+    border: 1px solid white;
+    background: transparent;
+    color: white !important;
+}
+.btn-glass:hover,
+.btn-glass:focus,
+.btn-glass:active{
+    background: white;
+    color: @gray-dark !important;
+    text-decoration: none;
+    .box-shadow-none;
+}
+
+/*** Color Schemes: Buttons ***/ 
+
+/*** Button Red ***/
+
+.body-red .btn-color {
+    background: @red;
+    border-color: @red;
+    color: white;
+}
+
+.body-red .btn-color:hover,
+.body-red .btn-color:focus,
+.body-red .btn-color:active{
+    background: @red-dark;
+    border-color: @red-dark;
+    color: white;
+    .box-shadow-none;
+}
+
+/*** Button Blue ***/
+
+.body-blue .btn-color {
+    background: @blue;
+    border-color: @blue;
+    color: white;
+}
+
+.body-blue .btn-color:hover,
+.body-blue .btn-color:focus,
+.body-blue .btn-color:active{
+    background: @blue-dark;
+    border-color: @blue-dark;
+    color: white;
+}
+
+/*** Button Green ***/
+
+.body-green .btn-color {
+    background: @green;
+    border-color: @green;
+    color: white;
+}
+
+.body-green .btn-color:hover,
+.body-green .btn-color:focus,
+.body-green .btn-color:active{
+    background: @green-dark;
+    border-color: @green-dark;
+    color: white;
+}
+
+/*** Button Asphalt ***/
+
+.body-asphalt .btn-color {
+    background: @asphalt;
+    border-color: @asphalt;
+    color: white;
+}
+
+.body-asphalt .btn-color:hover,
+.body-asphalt .btn-color:focus,
+.body-asphalt .btn-color:active{
+    background: @asphalt-dark;
+    border-color: @asphalt-dark;
+    color: white;
+}
+
+
+/* ===== Grid System ===== */
+
+@grid-columns: 8;
+@grid-gutter-width: 10px;
+
+.container > .row {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.col-md-4 > .row:first-child {
+    padding-bottom: 10px;
+}
+
+/* ===== Forms ===== */
+
+@input-bg: @red;
+@input-color-placeholder: white;
+@input-color: white;
+@input-border: white;
+@input-height-base: (@line-height-computed + (@padding-base-vertical * 2) + 12);
+@input-border-radius: 0;
+@input-border-focus: transparent;
+
+.form-control {
+    .box-shadow-none;
+    .transition-new(background-color);
+}
+.body-red .form-control {
+    background-color: @red;
+}
+.body-blue .form-control {
+    background-color: @blue;
+}
+.body-green .form-control {
+    background-color: @green;
+}
+.body-asphalt .form-control {
+    background-color: @asphalt;
+}
+.form-control:focus {
+    background-color: white;
+    .box-shadow-none;
+    color: @gray-dark;
+}
+label {
+    font-weight: inherit;
+    padding-bottom: 10px;
+}
+
+/* ===== Carousel ===== */
+
+/*** Slideshow controls ***/
+
+a.carousel-arrow {
+    display: block;
+    @size: 100px;
+    .square(@size);
+    position: absolute;
+    top: 50%;
+    margin-top: -@size/2;
+    background: transparent;
+    color: transparent;
+    font-size: 32px;
+    cursor: pointer;
+    -webkit-transition: background 300ms, color 300ms;
+            transition: background 300ms, color 300ms;
+}
+.carousel:hover a.carousel-arrow    {
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFF;
+}
+.carousel a.carousel-arrow:hover    {
+    background: rgba(0, 0, 0, 0.7);
+}
+a.carousel-arrow:hover,
+a.carousel-arrow:active {
+    text-decoration: none;
+}
+a.carousel-arrow-prev {
+    left: 0;
+    right: auto;
+    padding-right: 5px;
+}
+a.carousel-arrow-next {
+    right: 0;
+    left: auto;
+    padding-left: 5px;
+}
+
+/* ===== Tooltips ===== */
+
+.tooltip {
+    font-size: @font-size-base;
+}
+.tooltip-inner {
+    border-radius: 0;
+    padding: 6px 16px;
+}
+
+/* ===== Backgrounds ===== */
+
+.bg-color,
+.bg-color-dark {
+    color: white;
+}
+.body-red .bg-color {
+    background: @red;
+}
+.body-red .bg-color-dark {
+    background: @red-dark;
+}
+.body-blue .bg-color {
+    background: @blue;
+}
+.body-blue .bg-color-dark {
+    background: @blue-dark;
+}
+.body-green .bg-color {
+    background: @green;
+}
+.body-green .bg-color-dark {
+    background: @green-dark;
+}
+.body-asphalt .bg-color {
+    background: @asphalt;
+}
+.body-asphalt .bg-color-dark {
+    background: @asphalt-dark;
+}
+
+/* ===== Responsive Utilities ===== */
+
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+}
