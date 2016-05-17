@@ -1,0 +1,15 @@
+#FBUnauthorized{
+   display: block;
+}
+
+#FBAuthorized{
+   display: none;
+}
+
+#printButton{
+   display: none;
+}
+
+#FBUnauthorized .col-md-8{
+   height: 290px;
+}
