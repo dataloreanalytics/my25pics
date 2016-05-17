@@ -6,7 +6,8 @@ var tAndC = $("#termsAndConditionsText");
 var loginButton = $("#loginButton");
 var helloText = "Hello ";
 var questionText = ", lets get printing.";
-var tAncDText = "Its simple just hit the print button and you should be good to go. Make sure to the read <a>Terms and Conditions</a>."
+var linkToDoc = "<a href=\"TermsAndConditions/TermsOfService-my25prints.pdf\">Terms and Conditions</a>."
+var tAncDText = "Its simple just hit the print button and you should be good to go. Make sure to the read." + linkToDoc;
 
 function picture( height, width, url){
    this.height = height;
