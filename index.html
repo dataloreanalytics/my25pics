@@ -37,13 +37,29 @@
 <body class="body-red">
    <!-- Initilizes and setsup Facebook js sdk. -->
    <script>
+
+   // wait for DOM and facebook auth
+   var docReady = $.Deferred();
+   var facebookReady = $.Deferred();
+
+
    window.fbAsyncInit = function() {
       FB.init({
          appId      : '800212700114821',
          xfbml      : true,
+         status     : true, // check login status
+         cookie     : true, // enable cookies to allow the server to access the session
          version    : 'v2.6'
       });
    };
+
+   $.when(docReady, facebookReady).then(function() {
+      if (typeof getPhotos !== 'undefined') {
+         getPhotos( function( photos ) {
+            console.log( photos );
+         });
+      }
+   });
 
    (function(d, s, id){
       var js, fjs = d.getElementsByTagName(s)[0];

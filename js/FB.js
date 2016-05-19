@@ -15,7 +15,13 @@ function picture( height, width, url){
    this.url = url;
 }
 
+function albums( id, name){
+   this.id = id;
+   this.name = name;
+}
+
 var allPhotos = [];
+var allAlbums = [];
 
 window.fbAsyncInit = function() {
    FB.init({
@@ -34,32 +40,10 @@ window.fbAsyncInit = function() {
          console.log("not authorized");
          not_authorized();
       } else{
-         alert("DUDE");
+         console.log("no connecetion");
       }
    });
-
 };
-
-
-function getName(){
-   console.log("getName ->");
-   var name;
-   FB.api('/me', function(response) {
-      $(userName).html(helloText + response.name + questionText);
-      $(tAndC).html(tAncDText);
-      $(loginButton).toggle();
-      $(printButton).toggle();
-   });
-}
-
-function connected(){
-   console.log("connected() ->");
-   getName();
-   // alert(getName());
-   fbAuth.toggle();
-   getImages();
-   // alert("connected");
-}
 
 function not_authorized(){
    console.log("not_authorized ->");
@@ -79,7 +63,52 @@ function login(){
       } else{
          alert("DUDE");
       }
+   },{scope:'read_stream,publish_stream,offline_access,user_photos,friends_photos,user_photo_video_tags,friends_photo_video_tags'});
+}
+
+function connected(){
+   console.log("connected() ->");
+   getName();
+   fbAuth.toggle();
+   getAlbums();
+   getPhotosForAlbumId();
+}
+
+function getName(){
+   console.log("getName() ->");
+   var name;
+   FB.api('/me', function(response) {
+      $(userName).html(helloText + response.name + questionText);
+      $(tAndC).html(tAncDText);
+      $(loginButton).toggle();
+      $(printButton).toggle();
    });
+}
+
+function addAlbumObject(name, id){
+   var album = new albums(id, name);
+   allAlbums.push(album);
+   console.log(allAlbums.length);
+}
+
+function getAlbums(){
+   console.log("getAlbums() ->");
+   FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+         accessToken = response.authResponse.accessToken || '';
+         // console.log(response.authResponse.accessToken);
+         // Start Normal API
+         FB.api('/me/albums', function(response){
+            console.log("Checking for albums");
+            var d = response.data;
+            for (var i = 0, l = d.length; i < l; i++)
+            {
+               addAlbumObject(response.data[i].name, response.data[i].id);
+            }
+         });
+      }
+   });
+   console.log("end of getAlbums() <-");
 }
 
 function makeFacebookPhotoURL( id, accessToken ) {
@@ -87,33 +116,20 @@ function makeFacebookPhotoURL( id, accessToken ) {
    return 'https://graph.facebook.com/' + id + '/picture?access_token=' + accessToken;
 }
 
-function getAlbums( callback ) {
-   console.log("getAlbums() ->");
-   FB.api(
-      '/me/albums',
-      {fields: 'id,cover_photo'},
-      function(albumResponse) {
-         console.log( 'got albums ' );
-         console.log(albumResponse);
-         if (callback) {
-            callback(albumResponse);
-         }
-      }
-   );
-}
 
-function getPhotosForAlbumId( albumId, callback ) {
+function getPhotosForAlbumId() {
    console.log("getPhotosForAlbumId() ->");
-   FB.api(
-      '/'+albumId+'/photos',
-      {fields: 'id'},
-      function(albumPhotosResponse) {
-         console.log( 'got photos for album ' + albumId );
-         if (callback) {
-            callback( albumId, albumPhotosResponse );
-         }
-      }
-   );
+   console.log("The length is : " + allAlbums.length);
+   for( var i = 0; i < allAlbums.length; i++){
+      var albumId = albumObj[i].id;
+      var name = albumObj[i].name;
+      FB.api('/'+albumId+'/photos', function(albumPhotosResponse) {
+         console.log( albumPhotosResponse );
+         // if (callback) {
+         //    callback( albumId, albumPhotosResponse );
+         // }
+      });
+   }
 }
 
 function getLikesForPhotoId( photoId, callback ) {
@@ -127,27 +143,4 @@ function getLikesForPhotoId( photoId, callback ) {
          }
       }
    );
-}
-
-function getImages(){
-   console.log("getImages() ->");
-   FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-         accessToken = response.authResponse.accessToken || '';
-         console.log(response.authResponse.accessToken);
-         // Start Normal API
-         FB.api('/me/albums', function(response)
-         {
-            console.log("Checking for albums");
-            var d = response.data;
-            console.log( d.length);
-            for (var i = 0, l = d.length; i < l; i++)
-            {
-               addOption(response["data"][i].name,response["data"][i].id);
-               counter++;
-            }
-         });
-         //end of  Normal API
-      }
-   },{scope:'read_stream,publish_stream,offline_access,user_photos,friends_photos,user_photo_video_tags,friends_photo_video_tags'});
 }
