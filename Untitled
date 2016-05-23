@@ -57,7 +57,7 @@ function getAlbums( callback ) {
 }
 
 function getPhotosForAlbumId( albumId, callback ) {
-   FB.api('/'+albumId+'/photos',{fields: 'id, created_time, height, width, images, name'},
+   FB.api('/'+albumId+'/photos',{fields: 'id, created_time, height, width, images'},
    function(albumPhotosResponse) {
       if (callback) {
          callback( albumId, albumPhotosResponse );
@@ -65,12 +65,11 @@ function getPhotosForAlbumId( albumId, callback ) {
    });
 }
 
-function getLikesForPhotoId( photo ,callback ) {
-   var photoId = photo.photo_id;
+function getLikesForPhotoId( photoId ,callback ) {
    FB.api('/' + photoId+'/likes?limit=999999','GET', {"limit":"99999999"},
    function(photoLikesResponse) {
       if (callback) {
-         callback(photo, photoLikesResponse);
+         callback(photoLikesResponse);
       }
    });
 }
@@ -103,14 +102,13 @@ function getAllPhotos(callback){
                      'added'	   : facebookPhoto.created_time,
                      'height'    : highResImg.height,
                      'width'     : highResImg.width,
-                     'source'	   : highResImg.source,
-                     'photo_name': facebookPhoto.name
+                     'source'	   : highResImg.source
                   });
                }
-               deferreds[albumId].resolve();
-            });
 
+            });
          }
+         deferreds[albumId].resolve();
          $.when.apply($, listOfDeferreds ).then( function() {
             if (callback) {
                callback( allPhotos );
@@ -125,43 +123,47 @@ function getAllPhotos(callback){
 }
 
 function getAllLikes(callback){
-   getAllPhotos(function(allPhotosResponse){
-      // console.log(allPhotosResponse);
+
+   getAllPhotos(function(allPhotosCallback){
       deferreds = {}, listOfDeferreds = [];
-      var allPhotos = allPhotosResponse;
-      for(var i = 0; i < allPhotos.length; i++){
-         // console.log(allPhotos[i].photo_id);
-         // console.log(allPhotos[i].source);
+      var allPhotos = allPhotosCallback;
+      console.log(allPhotos.length);
+      var  i = 0;
+      for( i = 0; i < allPhotos.length; i ++){
+         // console.log(i);
+         // console.log(allPhotos[i]);
          deferreds[allPhotos[i]] = $.Deferred();
          listOfDeferreds.push( deferreds[allPhotos[i]] );
-         getLikesForPhotoId(allPhotos[i], function(photo, likesResponse){
-            photo.likes = likesResponse.data.length;
-            // console.log("Album id : " + photo.album_id);
-            // console.log("Photo id : " + photo.photo_id);
-            // console.log("Source : " + photo.source);
-            // console.log("Height : " + photo.height);
-            // console.log("Width  : " + photo.width);
-            // console.log("Likes  : " + photo.likes);
+         // console.log(allPhotos[i]);
+         getLikesForPhotoId( allPhotos[i].photo_id, function(likesResponse){
+            // console.log(allPhotos[i]);
+            // allPhotos[i].likes = likesResponse.data.length;
+            // console.log(likesResponse.data.length);
+            // console.log("Album id : " + allPhotos[i].album_id);
+            // console.log("Photo id : " + allPhotos[i].photo_id);
+            // console.log("Source : " + allPhotos[i].source);
+            // console.log("Height : " + allPhotos[i].height);
+            // console.log("Width  : " + allPhotos[i].width);
+            // console.log(allPhotos[i]);
+            // allPhotos[i].likes = likes
          });
+         deferreds[allPhotos[i]].resolve();
       }
-      callback(allPhotos);
-      // deferreds[albumId].resolve();
+      $.when.apply($, listOfDeferreds ).then( function() {
+         if (callback) {
+            callback( allPhotos );
+         }
+      }, function( error ) {
+         if (callback) {
+            callback( allPhotos, error );
+         }
+      });
    });
-
 }
 
 function login(){
    getAllLikes(function(allLikesResponse){
-      var top_25_img = $('.top-25-img');
-      var top_25_lbox = $('.top-25-lbox');
-      console.log(allLikesResponse.length);
-      for(i = 0; i < allLikesResponse.length; i++){
-         top_25_img.eq(i).attr('src', allLikesResponse[i].source);
-
-         top_25_lbox.eq(i).attr('href', allLikesResponse[i].source);
-         top_25_img.eq(i).fadeIn(2000);
-      }
-      // $('#FBAuthorized').fadeIn();
+      // console.log(allLikesResponse);
    });
 }
 // THis is for all photos
