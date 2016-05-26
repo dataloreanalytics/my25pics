@@ -74,6 +74,15 @@ function getLikesForPhotoId( photo ,callback ) {
       }
    });
 }
+function getLikesForPhotoId( photoId, callback ) {
+   FB.api('/' + photoId+'/likes?limit=999999','GET', {"limit":"99999999"},
+      function(photoLikesResponse) {
+         if (callback) {
+            callback( photoId, photoLikesResponse );
+         }
+      }
+   );
+}
 
 function getAllPhotos(callback){
    var allPhotos = [];
@@ -101,6 +110,7 @@ function getAllPhotos(callback){
                   var thumbNailImg = facebookPhoto.images[facebookPhoto.images.length - 2];
                   // console.log(facebookPhoto.images);
                   // console.log(thumbNailImg);
+                  // getLikesForPhotoId(facebookPhoto.id, function(facebookPhoto.id, ))
                   allPhotos.push({
                      'album_id'  : album.id,
                      'photo_id'	: facebookPhoto.id,
@@ -144,9 +154,10 @@ function getAllLikes(callback){
          listOfDeferreds.push( deferreds[allPhotos[i]] );
          getLikesForPhotoId(allPhotos[i], function(photo, likesResponse){
             // var likes = "likes";
-            photo["likes"] = likesResponse.data.length;
-            // photo.likes = likesResponse.data;
+            // photo["likes"] = likesResponse.data.length;
+            photo.likes = likesResponse.data;
             // console.log(photo);
+            console.log(JSON.stringify(photo));
             // console.log("Album id : " + photo.album_id);
             // console.log("Photo id : " + photo.photo_id);
             // console.log("Source : " + photo.source);
@@ -169,31 +180,22 @@ function login(){
       // console.log(allLikesResponse.length);
       // console.log(allLikesResponse);
       var allPhotos = allLikesResponse;
-      console.log(allLikesResponse);
-      console.log(allLikesResponse[1].likes);
+      console.log(allLikesResponse[1]);
+      console.log(JSON.stringify(allLikesResponse[1]));
       var sortedPhotos = [];
-      setTimeout(function()
-      {
-         // console.log(allLikesResponse[1].likes);
-         sortedPhotos = _.sortBy( allLikesResponse, "likes" );
-
-         // sortedPhotos = _.sortBy( allLikesResponse, "likes" );
-         console.log(sortedPhotos);
-         console.log(JSON.parse(JSON.stringify(sortedPhotos)));
-         console.log(sortedPhotos.length);
-         for(i = 0; i < 25 ; i++){
-            // console.log(sortedPhotos[i]);
-            top_25_img.eq(i).attr('src', sortedPhotos[i].thumbnail_source);
-            top_25_lbox.eq(i).attr('href', sortedPhotos[i].thumbnail_source);
-            // console.log(sortedPhotos[i].likes);
-            // top_25_img.eq(i).attr('src', allPhotos[i].source);
-            // top_25_lbox.eq(i).attr('href', allPhotos[i].source);
-            // console.log(allPhotos[i].likes);
-            top_25_img.eq(i).fadeIn(2000);
-         }
-      }, 100);
-
-
+      sortedPhotos = _.sortBy( allLikesResponse, "likes" );
+      // console.log(sortedPhotos);
+      console.log(sortedPhotos.length);
+      for(i = 0; i < 25 ; i++){
+         // console.log(sortedPhotos[i]);
+         top_25_img.eq(i).attr('src', sortedPhotos[i].thumbnail_source);
+         top_25_lbox.eq(i).attr('href', sortedPhotos[i].thumbnail_source);
+         // console.log(sortedPhotos[i].likes);
+         // top_25_img.eq(i).attr('src', allPhotos[i].source);
+         // top_25_lbox.eq(i).attr('href', allPhotos[i].source);
+         // console.log(allPhotos[i].likes);
+         top_25_img.eq(i).fadeIn(2000);
+      }
       // for(i = 0; i < 25; i++){
       //    top_25_lbox.eq(i).attr('href', sortedPhotos[i].source);
       // }
