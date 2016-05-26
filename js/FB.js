@@ -57,7 +57,7 @@ function getAlbums( callback ) {
 }
 
 function getPhotosForAlbumId( albumId, callback ) {
-   FB.api('/'+albumId+'/photos',{fields: 'id, created_time, height, width, images, name'},
+   FB.api('/'+albumId+'/photos',{"fields":"created_time,id,height,images,width,name","limit":"9999"},
    function(albumPhotosResponse) {
       if (callback) {
          callback( albumId, albumPhotosResponse );
@@ -109,7 +109,7 @@ function getAllPhotos(callback){
                      'width'     : highResImg.width,
                      'source'	   : highResImg.source,
                      'photo_name': facebookPhoto.name,
-                     'thumbnail_source' : thumbNailImg.source,
+                     // 'thumbnail_source' : thumbNailImg.source,
                      'all_resolution_images' : facebookPhoto.images
                   });
                }
