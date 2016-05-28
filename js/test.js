@@ -15,107 +15,113 @@ window.fbAsyncInit = function() {
    js.src = "//connect.facebook.net/en_US/sdk.js";
    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
-
-function getPhotos(albumId, callback){
-   FB.api(
-      '/'+ albumId + '/photos/',
-      'GET',
-      {"fields":"created_time,id,height,images,width,name","limit":"9999"},
-      function(response) {
-         callback( albumId, response);
-      }
-   );
-}
-
-function getLikes(photoId, callback){
-   FB.api(
-      '/'+ photoId +'/',
-      'GET',
-      {"fields":"likes.limit(9999){name},images,created_time,height,width,id,name, album"},
-      function(response) {
-         callback(photoId, response);
-      }
-   );
-}
-
-function getAlbums(callback){
+//
+// FB.api(
+//   '/me/',
+//   'GET',
+//   {"fields":"albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
+//   function(response) {
+//       // Insert your code here
+//   }
+// );
+function getAllPhotosAndLikes(callback){
    FB.login(function(loginResponse){
       if( loginResponse.status === 'connected'){
          FB.api(
-            '/me/albums/',
+            '/me/',
             'GET',
-            {"fields":"name,count,id,created_time","limit":"9999"},
-            function(albumsResponse) {
-               callback(albumsResponse);
+            {"fields":"albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
+            function(response) {
+               // Insert your code here
+               console.log(response);
+               callback(response);
             }
          );
       }
    }, {scope: 'public_profile,user_photos,user_likes'});
 }
 
-function getAllLikes(callback){
-   getAlbums(function(getAlbumsResponse){
-      // console.log(getAlbumsResponse.data.length);
-      var allPhotos = [];
-      var album, deferreds = {}, listOfDeferreds = [], photo;
-      for(var i = 0; i < getAlbumsResponse.data.length; i++){
-         // console.log(getAlbumsResponse.data[i]);
-         album = getAlbumsResponse.data[i];
-         deferreds[album.id] = $.Deferred();
-         listOfDeferreds.push( deferreds[album.id] );
-         getPhotos(getAlbumsResponse.data[i].id, function(albumId,getPhotosResponse){
-            // console.log(getPhotosResponse);
-            // console.log(getPhotosResponse.data.length);
-            for(var j = 0; j < getPhotosResponse.data.length; j++){
-               // console.log(getPhotosResponse.data[j].id);
-               photo = getPhotosResponse.data;
-               deferreds[photo.id] = $.Deferred();
-               listOfDeferreds.push( deferreds[photo.id] );
-               getLikes(getPhotosResponse.data[j].id, function(photoId, getLikesResponse){
-                  // console.log(getLikesResponse);
-                  var likes = 0;
-                  if( "likes" in getLikesResponse){
-                     // getLikesResponse.likes = data;
-                     likes = getLikesResponse.likes.data.length;
-                     // console.log(getLikesResponse.likes.data.length);
-                  }
-                  allPhotos.push({
-                     "created_time" : getLikesResponse.created_time,
-                     "id"           : getLikesResponse.id,
-                     "album"        : getLikesResponse.album,
-                     "height"       : getLikesResponse.height,
-                     "width"        : getLikesResponse.width,
-                     "name"         : getLikesResponse.name,
-                     "images"       : getLikesResponse.images,
-                     "likes"        : likes,
-                  });
-                  // console.log(allPhotos.length);
-                  // if(allPhotos.length == 617){
-                  //    var balh = JSON.parse(JSON.stringify(allPhotos[616]));
-                  //    console.log(balh);
-                  // }
-                  // console.log(getLikesResponse.likes.data.length);
-                  deferreds[photoId].resolve();
-               });
-            }
-            deferreds[albumId].resolve();
-         });
-      }
 
-      $.when.apply($, listOfDeferreds ).then( function() {
-         if (callback) {
-            callback( allPhotos );
+function getPhotosFromAlbum(allAlbum){
+   var allPhotos = [], count = 0 ;
+   for(var i = 0; i < allAlbum.length; i++){
+      if( "photos" in allAlbum[i]){
+         for(var j = 0; j < allAlbum[i].photos.data.length; j++){
+            // console.log(allAlbum[i].photos.data[j]);
+            var photo = allAlbum[i].photos.data[j];
+            var photoObj;
+            // console.log(photo);
+            // console.log(photo.created_time);
+            // console.log(photo.id);
+            // console.log(photo.images);
+            // allPhotos.push
+            var likes = 0;
+            var name = "";
+            if( "likes" in photo){
+               likes = (photo.likes.data.length);
+            }
+            if( "name" in photo){
+               name = photo.name;
+            }
+            photo.likes = likes;
+            photo.name = name;
+            // console.log(photo.likes);
+            // console.log(photo.name);
+            photoObj = {
+               'created_time' : photo.created_time,
+               'photo_id'	   : photo.id,
+               'images'       : photo.images,
+               'likes'        : photo.likes,
+               'name'         : photo.name,
+            }
+            allPhotos.push(photoObj);
+            // console.log(allPhotos.length);
          }
-      }, function( error ) {
-         if (callback) {
-            callback( allPhotos, error );
-         }
-      });
-   });
+      }
+   }
+   return allPhotos;
 }
 
+
 function login(){
-   getAllLikes(function(allLikesResponse){
-      console.log(allLikesResponse);
-   })
+   getAllPhotosAndLikes(function(response){
+
+      var top_25_img = $('.top-25-img');
+      var top_25_lbox = $('.top-25-lbox');
+      // setTimeout(function(){
+      //
+      //    // console.log(JSON.stringify(response));
+      // }, 1000);
+
+      console.log(response.albums.data.length);
+      console.log(response.albums);
+      var allPhotos = getPhotosFromAlbum(response.albums.data);
+      // console.log(allPhotos);
+      // console.log(allPhotos[2]);
+      // console.log(allPhotos[3]);
+      // console.log(JSON.stringify(allPhotos[1]));
+      var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
+      // console.log(sortedPhotos);
+      for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
+         // console.log(sortedPhotos[i]);
+         // console.log(sortedPhotos[i].images[sortedPhotos[i].images.length - 1]);
+
+         var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
+         console.log(sortedPhotos[i]);
+         // console.log(thumbNail);
+         var highResImg = sortedPhotos[i].images[0].source;
+         // console.log(thumbNail);
+         top_25_img.eq(i).attr('src', thumbNail);
+         top_25_lbox.eq(i).attr('href', highResImg);
+         // console.log(sortedPhotos[i].likes);
+         // top_25_img.eq(i).attr('src', allPhotos[i].source);
+         // top_25_lbox.eq(i).attr('href', allPhotos[i].source);
+         // console.log(allPhotos[i].likes);
+         top_25_img.eq(i).fadeIn(2000);
+      }
+
+      setTimeout(function(){
+         $('#FBAuthorized').fadeIn();
+      }, 100);
+   });
 }
