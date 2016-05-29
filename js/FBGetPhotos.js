@@ -88,11 +88,11 @@ function login(){
          console.log(thumbNail);
          // var images = ["\"img/1.jpg\"", "\"img/3.jpg\"", "\"img/3.jpg\""];
          // for(var i = 0; i < 3; i++){
-         var a =  '<a href=' + highResImg +  'title='+ '"' + name  + '" ' +'data-gallery> ';
-         var img = '<img src=' + thumbNail + 'alt='+ '"' + name  + '" ' +'> </a>';
+         var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
+         var img = '<img src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a>';
          var append = a + img;
          var append = append;
-         div.append(append);
+         div.append(append).fadeIn(2000);
          // }
       }
       setTimeout(function(){
