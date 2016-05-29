@@ -76,12 +76,13 @@ function login(){
       // console.log(allPhotos[3]);
       // console.log(JSON.stringify(allPhotos[1]));
       var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
-      console.log(sortedPhotos);
+      // console.log(sortedPhotos);
       // console.log(sortedPhotos);
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
          var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
          var highResImg = sortedPhotos[i].images[0].source;
          var name = sortedPhotos[i].name;
+         console.log(name);
 
 
          // var images = ["\"img/1.jpg\"", "\"img/3.jpg\"", "\"img/3.jpg\""];
