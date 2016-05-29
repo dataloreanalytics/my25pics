@@ -79,7 +79,7 @@ function login(){
       // console.log(sortedPhotos);
       // console.log(sortedPhotos);
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
-         var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
+         var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length].source;
          var highResImg = sortedPhotos[i].images[0].source;
          var name = sortedPhotos[i].name;
          console.log(sortedPhotos[i]);
