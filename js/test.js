@@ -1,29 +1,3 @@
-window.fbAsyncInit = function() {
-   FB.init({
-      appId      : '800212700114821',
-      xfbml      : true,
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      version    : 'v2.6'
-   });
-};
-
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-//
-// FB.api(
-//   '/me/',
-//   'GET',
-//   {"fields":"albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
-//   function(response) {
-//       // Insert your code here
-//   }
-// );
 function getAllPhotosAndLikes(callback){
    FB.login(function(loginResponse){
       if( loginResponse.status === 'connected'){
@@ -101,13 +75,14 @@ function login(){
       // console.log(allPhotos[3]);
       // console.log(JSON.stringify(allPhotos[1]));
       var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
+      console.log(sortedPhotos);
       // console.log(sortedPhotos);
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
          // console.log(sortedPhotos[i]);
          // console.log(sortedPhotos[i].images[sortedPhotos[i].images.length - 1]);
 
          var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
-         console.log(sortedPhotos[i]);
+         // console.log(sortedPhotos[i]);
          // console.log(thumbNail);
          var highResImg = sortedPhotos[i].images[0].source;
          // console.log(thumbNail);
@@ -117,7 +92,7 @@ function login(){
          // top_25_img.eq(i).attr('src', allPhotos[i].source);
          // top_25_lbox.eq(i).attr('href', allPhotos[i].source);
          // console.log(allPhotos[i].likes);
-         top_25_img.eq(i).fadeIn(2000);
+         top_25_img.eq(i).fadeIn(3000);
       }
 
       setTimeout(function(){

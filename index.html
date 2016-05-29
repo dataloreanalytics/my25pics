@@ -44,418 +44,420 @@
 
 
    window.fbAsyncInit = function() {
-      FB.init({
-         appId      : '800212700114821',
-         xfbml      : true,
-         status     : true, // check login status
-         cookie     : true, // enable cookies to allow the server to access the session
-         version    : 'v2.6'
-      });
-   };
+   FB.init({
+   appId      : '800212700114821',
+   xfbml      : true,
+   status     : true, // check login status
+   cookie     : true, // enable cookies to allow the server to access the session
+   version    : 'v2.6'
+});
+};
 
-   $.when(docReady, facebookReady).then(function() {
-      if (typeof getPhotos !== 'undefined') {
-         getPhotos( function( photos ) {
-            console.log( photos );
-         });
-      }
-   });
+$.when(docReady, facebookReady).then(function() {
+if (typeof getPhotos !== 'undefined') {
+getPhotos( function( photos ) {
+console.log( photos );
+});
+}
+});
 
-   (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-   </script> -->
+(function(d, s, id){
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) {return;}
+js = d.createElement(s); js.id = id;
+js.src = "//connect.facebook.net/en_US/sdk.js";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script> -->
 
-   <!-- Color Options -->
-   <div class="color-options">
-      <div class="option red" data-color="red"></div>
-      <div class="option blue" data-color="blue"></div>
-      <div class="option green" data-color="green"></div>
-      <div class="option asphalt" data-color="asphalt"></div>
+<!-- Color Options -->
+<div class="color-options">
+   <div class="option red" data-color="red"></div>
+   <div class="option blue" data-color="blue"></div>
+   <div class="option green" data-color="green"></div>
+   <div class="option asphalt" data-color="asphalt"></div>
+</div>
+
+<!-- Landing Image -->
+<div class="wrapper" id="home">
+
+   <!-- Navigation -->
+   <i class="fa fa-bars fa-lg menu-trigger show" id="menu-open"></i>
+   <i class="fa fa-bars fa-lg menu-trigger hidden" id="menu-close"></i>
+   <i class="fa fa-bars fa-lg menu-trigger hidden" id="menu-dummy"></i>
+   <div class="menu" role="navigation">
+      <ul>
+         <li class="hidden"><a href="#home" id="home-link" data-toggle="home-link" data-placement="left" title="Home"><i class="fa fa-home fa-lg"></i></a></li>
+         <li class="hidden delay-1"><a href="#about" id="about-link" data-toggle="about-link" data-placement="left" title="About"><i class="fa fa-comments-o fa-lg"></i></a></li>
+         <li class="hidden delay-2"><a href="#features" id="features-link" data-toggle="features-link" data-placement="left" title="Features"><i class="fa fa-bookmark fa-lg"></i></a></li>
+         <li class="hidden delay-3"><a href="#facebook" id="facebook-link" data-toggle="facebook-link" data-placement="left" title="Facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
+         <!-- <li class="hidden delay-4"><a href="#team" id="team-link" data-toggle="team-link" data-placement="left" title="Instagram"><i class="fa fa-instagram fa-lg"></i></a></li> -->
+         <li class="hidden delay-5"><a href="#contact" id="contact-link" data-toggle="contact-link" data-placement="left" title="Contact"><i class="fa fa-envelope-o fa-lg"></i></a></li>
+      </ul>
    </div>
 
-   <!-- Landing Image -->
-   <div class="wrapper" id="home">
+   <!-- Welcome Message -->
+   <div class="text animated fadeIn">
+      <h1 class="animated bounceIn delay-1">Your top 25 to print.</h1>
+      <hr class="animated fadeInUp delay-2">
+      <p class="animated fadeInUp delay-3">You post and we print your top pictures for the month. We print your 25 favorite photos from each month from your
+         Facebook and Instagram accounts</p>
+         <a href="#" class="btn btn-glass animated flipInX delay-4">Subscribe Now</a>
+      </div> <!-- / .text -->
 
-      <!-- Navigation -->
-      <i class="fa fa-bars fa-lg menu-trigger show" id="menu-open"></i>
-      <i class="fa fa-bars fa-lg menu-trigger hidden" id="menu-close"></i>
-      <i class="fa fa-bars fa-lg menu-trigger hidden" id="menu-dummy"></i>
-      <div class="menu" role="navigation">
-         <ul>
-            <li class="hidden"><a href="#home" id="home-link" data-toggle="home-link" data-placement="left" title="Home"><i class="fa fa-home fa-lg"></i></a></li>
-            <li class="hidden delay-1"><a href="#about" id="about-link" data-toggle="about-link" data-placement="left" title="About"><i class="fa fa-comments-o fa-lg"></i></a></li>
-            <li class="hidden delay-2"><a href="#features" id="features-link" data-toggle="features-link" data-placement="left" title="Features"><i class="fa fa-bookmark fa-lg"></i></a></li>
-            <li class="hidden delay-3"><a href="#facebook" id="facebook-link" data-toggle="facebook-link" data-placement="left" title="Facebook"><i class="fa fa-facebook fa-lg"></i></a></li>
-            <!-- <li class="hidden delay-4"><a href="#team" id="team-link" data-toggle="team-link" data-placement="left" title="Instagram"><i class="fa fa-instagram fa-lg"></i></a></li> -->
-            <li class="hidden delay-5"><a href="#contact" id="contact-link" data-toggle="contact-link" data-placement="left" title="Contact"><i class="fa fa-envelope-o fa-lg"></i></a></li>
-         </ul>
+      <!-- Background -->
+      <div class="wrapper-inner"></div>
+
+   </div> <!-- / .wrapper -->
+
+   <div class="container">
+
+      <div class="margin"></div>
+
+      <!-- About Us -->
+      <div class="container">
+         <div class="row" id="about">
+            <div class="col-md-4 col-sm-8">
+               <img class="img-responsive block-img fadingIn transparent" src="img/1.jpg" alt="...">
+            </div>
+            <div class="col-md-4 col-sm-8">
+               <div class="row">
+                  <div class="col-md-8 col-sm-8">
+                     <div class="block-hf block-sm fadingIn transparent">
+                        <h2>Your 25 Pictures</h2>
+                        <p>
+                           A brand new way to keep your memories closer to you. Each month we will find your 25 most liked photos and simply make 25
+                           Kodak pictures for you to share with your family and friends.
+                           It’s a simple way to start your scrapbook and photo album today!
+                           We make only genuine Kodak prints made only on Kodak paper.
+                        </p>
+                     </div>
+                  </div>
+               </div> <!-- / .row -->
+               <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                     <img class="img-responsive block-img fadingIn transparent" src="img/5.jpg" alt="...">
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                     <img class="img-responsive block-img fadingIn transparent" src="img/7.jpg" alt="...">
+                  </div>
+               </div> <!-- / .row -->
+            </div>
+         </div> <!-- / .row -->
       </div>
 
-      <!-- Welcome Message -->
-      <div class="text animated fadeIn">
-         <h1 class="animated bounceIn delay-1">Your top 25 to print.</h1>
-         <hr class="animated fadeInUp delay-2">
-         <p class="animated fadeInUp delay-3">You post and we print your top pictures for the month. We print your 25 favorite photos from each month from your
-            Facebook and Instagram accounts</p>
-            <a href="#" class="btn btn-glass animated flipInX delay-4">Subscribe Now</a>
-         </div> <!-- / .text -->
-
-         <!-- Background -->
-         <div class="wrapper-inner"></div>
-
-      </div> <!-- / .wrapper -->
-
+      <!-- Main Features -->
       <div class="container">
-
-         <div class="margin"></div>
-
-         <!-- About Us -->
-         <div class="container">
-            <div class="row" id="about">
-               <div class="col-md-4 col-sm-8">
-                  <img class="img-responsive block-img fadingIn transparent" src="img/1.jpg" alt="...">
-               </div>
-               <div class="col-md-4 col-sm-8">
-                  <div class="row">
-                     <div class="col-md-8 col-sm-8">
-                        <div class="block-hf block-sm fadingIn transparent">
-                           <h2>Your 25 Pictures</h2>
-                           <p>
-                              A brand new way to keep your memories closer to you. Each month we will find your 25 most liked photos and simply make 25
-                              Kodak pictures for you to share with your family and friends.
-                              It’s a simple way to start your scrapbook and photo album today!
-                              We make only genuine Kodak prints made only on Kodak paper.
-                           </p>
-                        </div>
-                     </div>
-                  </div> <!-- / .row -->
-                  <div class="row">
-                     <div class="col-md-4 col-sm-4">
-                        <img class="img-responsive block-img fadingIn transparent" src="img/5.jpg" alt="...">
-                     </div>
-                     <div class="col-md-4 col-sm-4">
-                        <img class="img-responsive block-img fadingIn transparent" src="img/7.jpg" alt="...">
-                     </div>
-                  </div> <!-- / .row -->
-               </div>
-            </div> <!-- / .row -->
-         </div>
-
-         <!-- Main Features -->
-         <div class="container">
-            <div class="row" id="features">
-               <div class="col-md-4 col-sm-8">
-                  <div class="row">
-                     <div class="col-md-8 col-sm-8">
-                        <div class="block-hf block-sm fadingIn transparent">
-                           <h2>Our Features</h2>
-                           <p>
-                              Insert some features and just some cool things we can do with out product. might need your help here.
-                           </p>
-                        </div>
-                     </div>
-                  </div> <!-- / .row -->
-                  <div class="row">
-                     <div class="col-md-4 col-sm-4">
-                        <div class="block block-sm bg-color fadingIn transparent">
-                           <h3>Top 25 pictures from Facebook</h3>
-                           <p>Looks great on all major browsers, tablets and phones.</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 col-sm-4">
-                        <div class="block block-sm bg-color fadingIn transparent">
-                           <h3>How much does it cost ?</h3>
-                           <p>Not too much, its about 4 coffees at $9.99.</p>
-                        </div>
-                     </div>
-                  </div> <!-- / .row -->
-               </div>
-               <div class="col-md-2 col-sm-4">
-                  <div class="block block-sm bg-color fadingIn transparent">
-                     <h3>What do I get for $9.99?</h3>
-                     <p>We value your money, for $9.99 includes
-                        25 prints, taxes and shipping to anywhere in the US or Canada.
-                     </p>
-                  </div>
-               </div>
-               <div class="col-md-2 col-sm-4">
-                  <div class="block block-sm bg-color fadingIn transparent">
-                     <h3>What do we need from you?</h3>
-                     <p>
-                        We respect your privacy,
-                        we do not share your information with anyone.
-                     </p>
-                  </div>
-               </div>
-            </div> <!-- / .row-->
-         </div>
-         <!--  -->
-         <!--  -->
-         <!-- facebook -->
-         <div class="container">
-            <div class="row" id="facebook">
-               <div class="row" id="FBUnauthorized" >
+         <div class="row" id="features">
+            <div class="col-md-4 col-sm-8">
+               <div class="row">
                   <div class="col-md-8 col-sm-8">
-                     <div class="block-hf block-sm fadingIn transparent" >
-                        <h2 id="userName">Want to check your top 25 Facebook posts for the month?</h2>
-                        <p id="termsAndConditionsText">
-                           Its simple just click on the login button below and you are ready.
+                     <div class="block-hf block-sm fadingIn transparent">
+                        <h2>Our Features</h2>
+                        <p>
+                           Insert some features and just some cool things we can do with out product. might need your help here.
                         </p>
-                        <a onclick="login()" id="loginButton" class="btn btn-color"><i class="fa fa-facebook-square fa-lg"></i> Login</a>
-                        <a onclick="printButton()" id="printButton" class="btn btn-color"><i class="fa fa-print fa-lg"></i> Print my 25</a>
                      </div>
                   </div>
+               </div> <!-- / .row -->
+               <div class="row">
+                  <div class="col-md-4 col-sm-4">
+                     <div class="block block-sm bg-color fadingIn transparent">
+                        <h3>Top 25 pictures from Facebook</h3>
+                        <p>Looks great on all major browsers, tablets and phones.</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4 col-sm-4">
+                     <div class="block block-sm bg-color fadingIn transparent">
+                        <h3>How much does it cost ?</h3>
+                        <p>Not too much, its about 4 coffees at $9.99.</p>
+                     </div>
+                  </div>
+               </div> <!-- / .row -->
+            </div>
+            <div class="col-md-2 col-sm-4">
+               <div class="block block-sm bg-color fadingIn transparent">
+                  <h3>What do I get for $9.99?</h3>
+                  <p>We value your money, for $9.99 includes
+                     25 prints, taxes and shipping to anywhere in the US or Canada.
+                  </p>
                </div>
-            </div> <!-- / .row -->
-         </div>
+            </div>
+            <div class="col-md-2 col-sm-4">
+               <div class="block block-sm bg-color fadingIn transparent">
+                  <h3>What do we need from you?</h3>
+                  <p>
+                     We respect your privacy,
+                     we do not share your information with anyone.
+                  </p>
+               </div>
+            </div>
+         </div> <!-- / .row-->
+      </div>
+      <!--  -->
+      <!--  -->
+      <!-- facebook -->
+      <div class="container">
+         <div class="row" id="facebook">
+            <div class="row" id="FBUnauthorized" >
+               <div class="col-md-8 col-sm-8">
+                  <div class="block-hf block-sm fadingIn transparent" >
+                     <h2 id="userName">Want to check your top 25 Facebook posts for the month?</h2>
+                     <p id="termsAndConditionsText">
+                        Its simple just click on the login button below and you are ready.
+                     </p>
+                     <a onclick="login()" id="loginButton" class="btn btn-color"><i class="fa fa-facebook-square fa-lg"></i>Login</a>
+                     <a onclick="printButton()" id="printButton" class="btn btn-color"><i class="fa fa-cart fa-lg"></i> Checkout my 25</a>
+                  </div>
+               </div>
+            </div>
+         </div> <!-- / .row -->
+      </div>
 
+      <!--  -->
+      <!--  -->
+      <!-- The images -->
+      <div class="container" id="FBAuthorized">
+         <div class="row">
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/1.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,1 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/2.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/2.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,2 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/3.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/3.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,3 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/4.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,4 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/5.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,5 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/6.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,6 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/7.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,7 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/8.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 1,8 -->
+         </div><!-- / .row 1-->
          <!--  -->
          <!--  -->
-         <!-- The images -->
-         <div class="container" id="FBAuthorized">
-            <div class="row">
-               <div class="col-md-8 col-sm-8">
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/1.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,1 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/2.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/2.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,2 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/3.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/3.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,3 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/4.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,4 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/5.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,5 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/6.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,6 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/7.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,7 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/8.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 1,8 -->
+         <br/>
+         <!--  -->
+         <div class="row">
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/9.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
                </div>
-            </div><!-- / .row 1-->
-            <!--  -->
-            <!--  -->
-            <br/>
-            <!--  -->
-            <div class="row">
-               <div class="col-md-8 col-sm-8">
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/9.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,1 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/10.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/2.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,2 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/11.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/3.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,3 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/12.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,4 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/13.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,5 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/14.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,6 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/15.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,7 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/16.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 2,8 -->
+            </div><!-- end of image 2,1 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/10.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/2.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
                </div>
-            </div><!-- / .row 2-->
-            <!--  -->
-            <!--  -->
-            <br/>
-            <!--  -->
-            <div class="row">
-               <div class="col-md-8 col-sm-8">
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/17.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,1 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/2.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/2.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,2 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/3.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/3.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,3 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/4.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,4 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/5.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,5 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/6.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,6 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/7.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,7 -->
-                  <div class="col-md-1 col-sm-1 top-25-col">
-                     <div class="block-hover fadingIn transparent">
-                        <img class="img-responsive block-img top-25-img" src="img/8.jpg" alt="...">
-                        <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
-                     </div>
-                  </div><!-- end of image 3,8 -->
+            </div><!-- end of image 2,2 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/11.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/3.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
                </div>
-            </div><!-- / .row 3-->
-         </div><!-- / .container -->
+            </div><!-- end of image 2,3 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/12.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 2,4 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/13.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 2,5 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/14.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 2,6 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/15.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 2,7 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/16.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 2,8 -->
+         </div><!-- / .row 2-->
+         <!--  -->
+         <!--  -->
+         <br/>
+         <!--  -->
+         <div class="row">
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/17.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,1 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/2.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/2.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,2 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/3.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/3.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,3 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/4.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,4 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/5.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,5 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/6.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,6 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/7.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,7 -->
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/8.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/4.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 3,8 -->
+         </div><!-- / .row 3-->
+         <div class="row">
+            <div class="col-md-1 col-sm-1 top-25-col">
+               <div class="block-hover fadingIn transparent">
+                  <img class="img-responsive block-img top-25-img" src="img/1.jpg" alt="...">
+                  <a class="top-25-lbox" href="img/1.jpg" data-lightbox="lightbox"><div class="plus">+</div></a>
+               </div>
+            </div><!-- end of image 4,1 -->
+         </div><!-- / .row 4-->
+      </div><!-- / .container -->
 
 
-         <!-- Contact Us -->
-         <div class="container">
-            <div class="row" id="contact">
-               <div class="col-md-4 col-sm-8">
-                  <div class="block block-lg bg-color fadingIn transparent">
-                     <h2>Contact Us</h2>
-                     <p>Please fill out the form below to send us your message.</p>
-                     <form role="form">
-                        <div class="row form-group">
-                           <div class="col-md-4 col-sm-4 col-xs-4">
-                              <label for="email" class="sr-only">Your email address</label>
-                              <input type="email" class="form-control" id="email" placeholder="E-mail" data-original-title="" title="">
-                           </div>
-                           <div class="col-md-4 col-sm-4 col-xs-4">
-                              <label for="name" class="sr-only">Your name</label>
-                              <input type="text" class="form-control" id="name" placeholder="Full Name" data-original-title="" title="">
-                           </div>
+      <!-- Contact Us -->
+      <div class="container">
+         <div class="row" id="contact">
+            <div class="col-md-4 col-sm-8">
+               <div class="block block-lg bg-color fadingIn transparent">
+                  <h2>Contact Us</h2>
+                  <p>Please fill out the form below to send us your message.</p>
+                  <form role="form">
+                     <div class="row form-group">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                           <label for="email" class="sr-only">Your email address</label>
+                           <input type="email" class="form-control" id="email" placeholder="E-mail" data-original-title="" title="">
                         </div>
-                        <div class="form-group">
-                           <label for="message" class="sr-only">Your message</label>
-                           <textarea class="form-control" rows="3" id="message" placeholder="Message"></textarea>
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                           <label for="name" class="sr-only">Your name</label>
+                           <input type="text" class="form-control" id="name" placeholder="Full Name" data-original-title="" title="">
                         </div>
-                        <button type="submit" class="btn btn-block btn-glass"><i class="fa fa-check"></i> Send It</button>
-                     </form>
-                     <ul class="list-inline social-links">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                     </ul>
+                     </div>
+                     <div class="form-group">
+                        <label for="message" class="sr-only">Your message</label>
+                        <textarea class="form-control" rows="3" id="message" placeholder="Message"></textarea>
+                     </div>
+                     <button type="submit" class="btn btn-block btn-glass"><i class="fa fa-check"></i> Send It</button>
+                  </form>
+                  <ul class="list-inline social-links">
+                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                     <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class="col-md-4 col-sm-8">
+               <div class="block-address fadingIn transparent">
+                  <div class="google-maps">
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.067722674887!2d-79.31535518478856!3d43.70914165683003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cc4aac1e94cf%3A0xb55fff6e4398e19!2s6+Curity+Ave%2C+Toronto%2C+ON+M4B+1X2!5e0!3m2!1sen!2sca!4v1462740535512" width="500" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                     <br />
+                     <small>
+                        <a href="https://www.google.ca/maps/place/6+Curity+Ave,+Toronto,+ON+M4B+1X2/@43.7091417,-79.3153552,17z/data=!3m1!4b1!4m5!3m4!1s0x89d4cc4aac1e94cf:0xb55fff6e4398e19!8m2!3d43.7091378!4d-79.3131665" style="color:#0000FF;text-align:left">
+                           View Larger Map
+                        </a>
+                     </small>
+                  </div>
+                  <div class="mail-address">
+                     <p>Toronto, Canada, M4B1X2 6 Curity Avenue.</p>
                   </div>
                </div>
-               <div class="col-md-4 col-sm-8">
-                  <div class="block-address fadingIn transparent">
-                     <div class="google-maps">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2884.067722674887!2d-79.31535518478856!3d43.70914165683003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cc4aac1e94cf%3A0xb55fff6e4398e19!2s6+Curity+Ave%2C+Toronto%2C+ON+M4B+1X2!5e0!3m2!1sen!2sca!4v1462740535512" width="500" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
-                        <br />
-                        <small>
-                           <a href="https://www.google.ca/maps/place/6+Curity+Ave,+Toronto,+ON+M4B+1X2/@43.7091417,-79.3153552,17z/data=!3m1!4b1!4m5!3m4!1s0x89d4cc4aac1e94cf:0xb55fff6e4398e19!8m2!3d43.7091378!4d-79.3131665" style="color:#0000FF;text-align:left">
-                              View Larger Map
-                           </a>
-                        </small>
-                     </div>
-                     <div class="mail-address">
-                        <p>Toronto, Canada, M4B1X2 6 Curity Avenue.</p>
-                     </div>
-                  </div>
-               </div>
-            </div> <!-- / .row -->
+            </div>
+         </div> <!-- / .row -->
 
-            <div class="row">
-               <div class="col-md-8 col-sm-8">
-                  <p class="text-center">Copyright 2016 - Datalore Analytics Ltd. Created with <i class="fa fa-heart"></i> in Toronto.</p>
-               </div>
-            </div> <!-- / .row -->
-         </div> <!-- / .container -->
+         <div class="row">
+            <div class="col-md-8 col-sm-8">
+               <p class="text-center">Copyright 2016 - Datalore Analytics Ltd. Created with <i class="fa fa-heart"></i> in Toronto.</p>
+            </div>
+         </div> <!-- / .row -->
+      </div> <!-- / .container -->
 
-         <!-- Bootstrap core JavaScript
-         ================================================== -->
-         <!-- Placed at the end of the document so the pages load faster -->
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-         <!-- Firebase JavaScript -->
-         <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-         <!-- underscore javascript file -->
-         <script src="js/underscore-min.js"></script>
-         <!-- Personal javascript file -->
-         <!-- <script src="js/FB.js"></script> -->
-         <script src="js/test.js"></script>
-         <script src="js/bootstrap.min.js"></script>
-         <script src="js/scrolltopcontrol.js"></script>
-         <script src="js/lightbox-2.6.min.js"></script>
-         <script src="js/waypoints.min.js"></script>
-         <script src="js/custom.js"></script>
-      </body>
-      </html>
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+      <!-- Firebase JavaScript -->
+      <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+      <!-- underscore javascript file -->
+      <script src="js/underscore-min.js"></script>
+      <!-- Personal javascript file -->
+      <!-- <script src="js/FB.js"></script> -->
+      <script src="js/test.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+      <script src="js/scrolltopcontrol.js"></script>
+      <script src="js/lightbox-2.6.min.js"></script>
+      <script src="js/waypoints.min.js"></script>
+      <script src="js/custom.js"></script>
+   </body>
+   </html>
