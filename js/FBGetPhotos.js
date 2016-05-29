@@ -82,9 +82,10 @@ function login(){
          var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
          var highResImg = sortedPhotos[i].images[0].source;
          var name = sortedPhotos[i].name;
+         console.log(sortedPhotos[i]);
          console.log(name);
-
-
+         console.log(highResImg);
+         console.log(thumbNail);
          // var images = ["\"img/1.jpg\"", "\"img/3.jpg\"", "\"img/3.jpg\""];
          // for(var i = 0; i < 3; i++){
          var a =  '<a href=' + highResImg +  'title='+ '"' + name  + '" ' +'data-gallery> ';
