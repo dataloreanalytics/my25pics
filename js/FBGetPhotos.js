@@ -59,7 +59,7 @@ function getPhotosFromAlbum(allAlbum){
 
 function login(){
    getAllPhotosAndLikes(function(response){
-
+      alert("boobs");
       var top_25_img = $('.top-25-img');
       var top_25_lbox = $('.top-25-lbox');
       // setTimeout(function(){
