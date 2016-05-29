@@ -86,16 +86,17 @@ function login(){
          top_25_img.eq(i).fadeIn(3000);
 
          // var images = ["\"img/1.jpg\"", "\"img/3.jpg\"", "\"img/3.jpg\""];
-         for(var i = 0; i < 3; i++){
-            var a =  '<a href=' + images[i] +  'title="Tests" data-gallery> ';
-            var img = '<img src=' + images[i] + 'alt="Testa"> </a>'
-            var append = a + img;
-            var append = append;
-            div.append(append);
+         // for(var i = 0; i < 3; i++){
+         //    var a =  '<a href=' + images[i] +  'title="Tests" data-gallery> ';
+         //    var img = '<img src=' + images[i] + 'alt="Testa"> </a>'
+         //    var append = a + img;
+         //    var append = append;
+         //    div.append(append);
+         // }
       }
-
       setTimeout(function(){
          $('#FBAuthorized').fadeIn();
       }, 100);
+
    });
 }
