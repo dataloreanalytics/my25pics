@@ -82,18 +82,15 @@ function login(){
          var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
          var highResImg = sortedPhotos[i].images[0].source;
          var name = sortedPhotos[i].name;
-         console.log(name);
-         top_25_img.eq(i).attr('src', thumbNail);
-         top_25_lbox.eq(i).attr('href', highResImg);
-         top_25_img.eq(i).fadeIn(3000);
+
 
          // var images = ["\"img/1.jpg\"", "\"img/3.jpg\"", "\"img/3.jpg\""];
          // for(var i = 0; i < 3; i++){
-         //    var a =  '<a href=' + images[i] +  'title="Tests" data-gallery> ';
-         //    var img = '<img src=' + images[i] + 'alt="Testa"> </a>'
-         //    var append = a + img;
-         //    var append = append;
-         //    div.append(append);
+         var a =  '<a href=' + highResImg +  'title='+ '"' + name  + '" ' +'data-gallery> ';
+         var img = '<img src=' + thumbNail + 'alt='+ '"' + name  + '" ' +'> </a>';
+         var append = a + img;
+         var append = append;
+         div.append(append);
          // }
       }
       setTimeout(function(){
