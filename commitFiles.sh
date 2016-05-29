@@ -12,7 +12,7 @@ else
    git push
    git checkout gh-pages
    git rebase master
-   ecoho "Rebasing gh-pages . . . "
+   echo "Rebasing gh-pages . . . "
    git push
    git checkout master
    echo "You are all set to pal . . . Get coding again. . ."

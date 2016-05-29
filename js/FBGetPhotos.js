@@ -60,8 +60,9 @@ function getPhotosFromAlbum(allAlbum){
 function login(){
    getAllPhotosAndLikes(function(response){
 
-      var top_25_img = $('.top-25-img');
-      var top_25_lbox = $('.top-25-lbox');
+      // var top_25_img = $('.top-25-img');
+      // var top_25_lbox = $('.top-25-lbox');
+      var div = $("#links");
       // setTimeout(function(){
       //
       //    // console.log(JSON.stringify(response));
@@ -78,21 +79,19 @@ function login(){
       console.log(sortedPhotos);
       // console.log(sortedPhotos);
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
-         // console.log(sortedPhotos[i]);
-         // console.log(sortedPhotos[i].images[sortedPhotos[i].images.length - 1]);
-
          var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
-         // console.log(sortedPhotos[i]);
-         // console.log(thumbNail);
          var highResImg = sortedPhotos[i].images[0].source;
-         // console.log(thumbNail);
          top_25_img.eq(i).attr('src', thumbNail);
          top_25_lbox.eq(i).attr('href', highResImg);
-         // console.log(sortedPhotos[i].likes);
-         // top_25_img.eq(i).attr('src', allPhotos[i].source);
-         // top_25_lbox.eq(i).attr('href', allPhotos[i].source);
-         // console.log(allPhotos[i].likes);
          top_25_img.eq(i).fadeIn(3000);
+
+         // var images = ["\"img/1.jpg\"", "\"img/3.jpg\"", "\"img/3.jpg\""];
+         for(var i = 0; i < 3; i++){
+            var a =  '<a href=' + images[i] +  'title="Tests" data-gallery> ';
+            var img = '<img src=' + images[i] + 'alt="Testa"> </a>'
+            var append = a + img;
+            var append = append;
+            div.append(append);
       }
 
       setTimeout(function(){
