@@ -81,6 +81,8 @@ function login(){
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
          var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 1].source;
          var highResImg = sortedPhotos[i].images[0].source;
+         var name = sortedPhotos[i].name;
+         console.log(name);
          top_25_img.eq(i).attr('src', thumbNail);
          top_25_lbox.eq(i).attr('href', highResImg);
          top_25_img.eq(i).fadeIn(3000);
