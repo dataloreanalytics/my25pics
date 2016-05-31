@@ -4,7 +4,7 @@ function getAllPhotosAndLikes(callback){
          FB.api(
             '/me/',
             'GET',
-            {"fields":"id", "first_name", "last_name", "albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
+            {"fields":"first_name,last_name, albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
             function(response) {
                console.log(response);
                callback(response);
@@ -13,7 +13,14 @@ function getAllPhotosAndLikes(callback){
       }
    }, {scope: 'public_profile,user_photos,user_likes'});
 }
-
+// FB.api(
+//   '/me/',
+//   'GET',
+//   {"fields":"albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,likes.limit(999999),images}},first_name,last_name"},
+//   function(response) {
+//       // Insert your code here
+//   }
+// );
 
 function getPhotosFromAlbum(allAlbum){
    var allPhotos = [], count = 0 ;
