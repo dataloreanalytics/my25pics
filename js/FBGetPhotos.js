@@ -50,14 +50,15 @@ function getPhotosFromAlbum(allAlbum){
 function login(){
    getAllPhotosAndLikes(function(response){
       var imagesDiv = $("#links");
-      var unserInfoDiv = $("#userInfo");
+      var userInfoDiv = $("#userInfo");
       imagesDiv.empty();
-      unserInfoDiv.empty();
+      userInfoDiv.empty();
       console.log(response.albums.data.length);
       console.log(response.albums);
-      console.log(response.first_name);
-      console.log(response.last_name);
-
+      // console.log(response.first_name);
+      // console.log(response.last_name);
+      var name = response.first_name + " " + response.last_name;
+      userInfoDiv.append('<h2>Hello ' + name + '.')
       var allPhotos = getPhotosFromAlbum(response.albums.data);
       var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
