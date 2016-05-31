@@ -16,6 +16,8 @@
 <script src="http://dataloreanalytics.github.io/my25pics/js/bootstrap-image-gallery.min.js"></script>
 <!-- My CSS File -->
 <link rel="stylesheet" href="https://dataloreanalytics.github.io/my25pics/css/custom.css">
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <!-- Initilaizng facebook JS SDK -->
 <script>window.fbAsyncInit = function() {
    FB.init({
@@ -35,5 +37,18 @@
    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
+
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script>
+// Initialize Firebase
+var config = {
+   apiKey: "AIzaSyDXedU_J6GXO-AaQ9lKhDEKFEjBVAVghKQ",
+   authDomain: "my25pics.firebaseapp.com",
+   databaseURL: "https://my25pics.firebaseio.com",
+   storageBucket: "",
+};
+firebase.initializeApp(config);
+</script>
+
 <!-- My facebook JS  -->
 <script src="http://dataloreanalytics.github.io/my25pics/js/FBGetPhotos.js"></script>

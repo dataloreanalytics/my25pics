@@ -4,7 +4,7 @@ function getAllPhotosAndLikes(callback){
          FB.api(
             '/me/',
             'GET',
-            {"fields":"albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
+            {"fields":"id", "first_name", "last_name", "albums.limit(999999){name,count,id,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}","limit":"999999"},
             function(response) {
                console.log(response);
                callback(response);
@@ -51,8 +51,8 @@ function login(){
    getAllPhotosAndLikes(function(response){
       var div = $("#links");
 
-      console.log(response.albums.data.length);
-      console.log(response.albums);
+      // console.log(response.albums.data.length);
+      console.log(response);
       var allPhotos = getPhotosFromAlbum(response.albums.data);
       var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
