@@ -49,10 +49,13 @@ function getPhotosFromAlbum(allAlbum){
 
 function login(){
    getAllPhotosAndLikes(function(response){
-      var div = $("#links");
-
+      var imagesDiv = $("#links");
+      var unserInfoDiv = $("#userInfo");
       console.log(response.albums.data.length);
       console.log(response.albums);
+      console.log(response.first_name);
+      console.log(response.last_name);
+
       var allPhotos = getPhotosFromAlbum(response.albums.data);
       var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
       for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
@@ -64,7 +67,7 @@ function login(){
          var img = '<img src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a>';
          var append = a + img;
          var append = append;
-         div.append(append).fadeIn(3000);
+         imagesDiv.append(append).fadeIn(3000);
       }
       setTimeout(function(){
          $('#FBAuthorized').fadeIn();
