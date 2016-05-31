@@ -51,6 +51,8 @@ function login(){
    getAllPhotosAndLikes(function(response){
       var imagesDiv = $("#links");
       var unserInfoDiv = $("#userInfo");
+      imagesDiv.empty();
+      unserInfoDiv.empty();
       console.log(response.albums.data.length);
       console.log(response.albums);
       console.log(response.first_name);
