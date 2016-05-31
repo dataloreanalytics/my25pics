@@ -9,4 +9,11 @@
      text-transform: uppercase;
      font-weight: 700;            /* 700 = bold; 600 = semibold; 400 = normal */
      font-size: 1.2em;            /* the font's "normal" size = 1.0em */
- }  
+ }
+
+.my-button{
+   width: 225px;
+   height: 50px;
+   padding: 10px;
+   text-transform: uppercase;
+}
