@@ -1,66 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <title>Test</title>
-   <!-- Jquery -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-   <!-- Bootstrap CSS-->
-   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-   <!-- Bootstrap JS -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-   <!-- Underscore-min JS -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
-   <!-- blueimp-gallery CSS -->
-   <link rel="stylesheet" href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-   <!-- bootstrap image gallery css -->
-   <link rel="stylesheet" href="http://dataloreanalytics.github.io/my25pics/css/bootstrap-image-gallery.min.css">
-   <!-- blueimp-gallery JS -->
-   <script src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-   <!-- bootstrap-image-gallery JS -->
-   <script src="http://dataloreanalytics.github.io/my25pics/js/bootstrap-image-gallery.min.js"></script>
-   <script src="js/test.js"></script>
+   <meta charset="UTF-8">
+   <title>Sample FirebaseUI App</title>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
+
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+   <script>
+   // Initialize Firebase
+   var config = {
+      apiKey: "AIzaSyDXedU_J6GXO-AaQ9lKhDEKFEjBVAVghKQ",
+      authDomain: "my25pics.firebaseapp.com",
+      databaseURL: "https://my25pics.firebaseio.com",
+      storageBucket: "my25pics.appspot.com",
+   };
+   firebase.initializeApp(config);
+   </script>
+
+   <script>
+   window.fbAsyncInit = function() {
+      FB.init({
+         appId      : '800212700114821',
+         xfbml      : true,
+         status     : true, // check login status
+         version    : 'v2.6'
+      });
+   };
+
+   (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+   </script>
+
+   <script>
+   var provider = new firebase.auth.FacebookAuthProvider();
+   provider.addScope('user_photos');
+   provider.addScope('user_friends');
+   firebase.auth().signInWithPopup(provider).then(function(result) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      console.log(token);
+      // The signed-in user info.
+
+      var user = result.user;
+      console.log(user);
+      var user = firebase.auth().currentUser;
+      console.log(user);
+
+      if (user != null) {
+         user.providerData.forEach(function (profile) {
+            console.log("Sign-in provider: "+profile.providerId);
+            console.log("  Provider-specific UID: "+profile.uid);
+            console.log("  Name: "+profile.displayName);
+            console.log("  Email: "+profile.email);
+            console.log("  Photo URL: "+profile.photoURL);
+
+         });
+      }
+   }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+   });
+   </script>
+   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
 </head>
 <body>
-   <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
-   <div id="blueimp-gallery" class="blueimp-gallery">
-      <!-- The container for the modal slides -->
-      <div class="slides"></div>
-      <!-- Controls for the borderless lightbox -->
-      <h3 class="title"></h3>
-      <a class="prev">‹</a>
-      <a class="next">›</a>
-      <a class="close">×</a>
-      <a class="play-pause"></a>
-      <ol class="indicator"></ol>
-      <!-- The modal dialog, which will be used to wrap the lightbox content -->
-      <div class="modal fade">
-         <div class="modal-dialog">
-            <div class="modal-content">
-               <div class="modal-header">
-                  <button type="button" class="close" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title"></h4>
-               </div>
-               <div class="modal-body next"></div>
-               <div class="modal-footer">
-                  <button type="button" class="btn btn-default pull-left prev">
-                     <i class="glyphicon glyphicon-chevron-left"></i>
-                     Previous
-                  </button>
-                  <button type="button" class="btn btn-primary next">
-                     Next
-                     <i class="glyphicon glyphicon-chevron-right"></i>
-                  </button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <button onclick="test()">Click me</button>
-   <div id="links">
-      <!-- <a href="img/3.jpg" title="Two men and a wall" data-gallery>
-         <img src="img/3.jpg" alt="Banana">
-      </a> -->
-   </div>
+   <!-- The surrounding HTML is left untouched by FirebaseUI.
+   Your app may use that space for branding, controls and other customizations.-->
+   <h1>Welcome to My Awesome App</h1>
+   <button onclick="myFunc()">Click me please</button>
+   <!-- <div id="firebaseui-auth-container"></div> -->
 </body>
 </html>

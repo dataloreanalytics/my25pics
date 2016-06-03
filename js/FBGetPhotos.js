@@ -55,8 +55,6 @@ function login(){
       userInfoDiv.empty();
       console.log(response.albums.data.length);
       console.log(response.albums);
-      // console.log(response.first_name);
-      // console.log(response.last_name);
       var name = response.first_name + " " + response.last_name;
       userInfoDiv.append('<h2>Hello ' + name + '.')
       var allPhotos = getPhotosFromAlbum(response.albums.data);

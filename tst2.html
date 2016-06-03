@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Sample FirebaseUI App</title>
+   <script>
+   window.fbAsyncInit = function() {
+      FB.init({
+         appId      : '1082801578424739',
+         xfbml      : true,
+         status     : true, // check login status
+         cookie     : true, // enable cookies to allow the server to access the session
+         version    : 'v2.6'
+      });
+   };
+
+   (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+   FB.getLoginStatus(function(response) {
+      if (response.status === 'connected') {
+         console.log("yo");
+      } else if (response.status === 'not_authorized') {
+         console.log("oye");
+      } else {
+
+      }
+   });
+   </script>
+   <script>
+
+   </script>
+</head>
+<body>
+   <!-- The surrounding HTML is left untouched by FirebaseUI.
+   Your app may use that space for branding, controls and other customizations.-->
+   <h1>Welcome to My Awesome App</h1>
+   <button onclick="myFunc()">Click me please</button>
+   <!-- <div id="firebaseui-auth-container"></div> -->
+</body>
+</html>
