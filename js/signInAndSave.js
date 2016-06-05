@@ -2,7 +2,6 @@ function signInAndSave(){
    var provider = new firebase.auth.FacebookAuthProvider();
    provider.addScope('user_photos');
    provider.addScope('user_friends');
-   // console.log(provider);
    firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
@@ -15,7 +14,6 @@ function signInAndSave(){
             console.log(response);
          }
       );
-      // console.log(userId);
       // ...
       // Get a reference to the database service
       var database = firebase.database();
@@ -27,15 +25,8 @@ function signInAndSave(){
             'access_token' : token
          },
          function(response) {
-            // $("#status").html(JSON.stringify(response));
-            // console.log(database);
-            // console.log(response);
-            // console.log(user);
-            // console.log(response.name);
             var imagesDiv = $("#links");
             imagesDiv.empty();
-            // console.log(response.albums.data.length);
-            // console.log(JSON.stringify(response.albums.data));
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
@@ -44,10 +35,6 @@ function signInAndSave(){
                var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
-               // console.log(sortedPhotos[i]);
-               // <a href="images/banana.jpg" title="Banana" data-gallery>
-               // <img src="images/thumbnails/banana.jpg" alt="Banana">
-               // </a>
                var div_up = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">'
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
@@ -56,7 +43,6 @@ function signInAndSave(){
                imagesDiv.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
-            // console.log(JSON.stringify(top_25));
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
             $("#logoutRow").fadeIn(5000);
@@ -149,11 +135,11 @@ function writeUserData(userId, response, top_25_pics) {
    var mm = today.getMonth()+1; //January is 0!
    var yyyy = today.getFullYear();
    var topPicsDate = yyyy + '_' + mm + '_' + dd + '_top_25';
-
+   var topPics = {};
+   topPics[topPicsDate] = top_25_pics;
    firebase.database().ref('users/' + userId).set({
       'name'      : response.name,
       'albums'    : (response.albums.data),
-      topPicsDate : (top_25_pics),
+      '25pictures' : (topPics),
    });
-
 }
