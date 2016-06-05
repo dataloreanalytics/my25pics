@@ -147,8 +147,8 @@ function writeUserData(userId, response, top_25_pics) {
 
    firebase.database().ref('users/' + userId).set({
       'name'      : response.name,
-      'albums'    : JSON.stringify(response.albums.data),
-      topPicsDate : JSON.stringify(top_25_pics),
+      'albums'    : (response.albums.data),
+      topPicsDate : (top_25_pics),
    });
 
 }
