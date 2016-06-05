@@ -51,7 +51,7 @@ function signInAndSave(){
                var div_up = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">'
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
-               var append = div_up + a + img;
+               var append = a + img;
                var append = append;
                imagesDiv.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
