@@ -3,13 +3,28 @@
 <head>
    <meta charset="UTF-8">
    <title>Sample FirebaseUI App</title>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+   <!-- Jquery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <!-- Underscore-min JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
    <script>
+   // Initialize Firebase
+   var config = {
+      apiKey: "AIzaSyDXedU_J6GXO-AaQ9lKhDEKFEjBVAVghKQ",
+      authDomain: "my25pics.firebaseapp.com",
+      databaseURL: "https://my25pics.firebaseio.com",
+      storageBucket: "my25pics.appspot.com",
+   };
+   firebase.initializeApp(config);
+
    window.fbAsyncInit = function() {
       FB.init({
-         appId      : '1082801578424739',
+         appId      : '800212700114821',
          xfbml      : true,
          status     : true, // check login status
-         cookie     : true, // enable cookies to allow the server to access the session
          version    : 'v2.6'
       });
    };
@@ -21,26 +36,23 @@
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-
-   FB.getLoginStatus(function(response) {
-      if (response.status === 'connected') {
-         console.log("yo");
-      } else if (response.status === 'not_authorized') {
-         console.log("oye");
-      } else {
-
-      }
-   });
    </script>
-   <script>
+
+
+
+   <script src="js/tst2.js">
 
    </script>
+   <!-- My facebook JS  -->
+   <script src="http://dataloreanalytics.github.io/my25pics/js/FBGetPhotos.js"></script>
+   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
 </head>
 <body>
    <!-- The surrounding HTML is left untouched by FirebaseUI.
    Your app may use that space for branding, controls and other customizations.-->
    <h1>Welcome to My Awesome App</h1>
-   <button onclick="myFunc()">Click me please</button>
+   <button onclick="blah()">Click me please</button>
    <!-- <div id="firebaseui-auth-container"></div> -->
+   <div id="links"></div>
 </body>
 </html>

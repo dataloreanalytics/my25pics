@@ -70,9 +70,7 @@ function login(){
          var append = append;
          imagesDiv.append(append).fadeIn(3000);
       }
-      setTimeout(function(){
-         $('#FBAuthorized').fadeIn();
-      }, 100);
+
 
    });
 }

@@ -1,13 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="UTF-8">
-   <title>Sample FirebaseUI App</title>
+   <meta charset="utf-8">
+   <title>Social buttons</title>
+   <!-- Font Awesome CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+   <!-- Bootstrap CSS-->
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Social buttons CSS -->
+   <link rel="stylesheet" href="https://dataloreanalytics.github.io/my25pics/css/bootstrap-social.css">
+   <!-- blueimp-gallery CSS -->
+   <link rel="stylesheet" href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+   <!-- bootstrap image gallery css -->
+   <link rel="stylesheet" href="http://dataloreanalytics.github.io/my25pics/css/bootstrap-image-gallery.min.css">
+   <!-- Jquery -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+   <!-- Bootstrap JS -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+   <!-- Firebase app JS -->
    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+   <!-- firebase auth js -->
    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
-
+   <!-- firebase js -->
    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+   <!-- Underscore-min JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+   <!-- blueimp-gallery JS -->
+   <script src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+   <!-- bootstrap-image-gallery JS -->
+   <script src="http://dataloreanalytics.github.io/my25pics/js/bootstrap-image-gallery.min.js"></script>
+   <!-- Initialize firebase and download FB JS SDK -->
+   <script>
+   //Facebook JS SDK
+   // This is called with the results from from FB.getLoginStatus().
+   function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      console.log(response);
+      // The response object is returned with a status field that lets the
+      // app know the current login status of the person.
+      // Full docs on the response object can be found in the documentation
+      // for FB.getLoginStatus().
+      if (response.status === 'connected') {
+         // Logged into your app and Facebook.
+         // document.getElementById('status').innerHTML = 'Welcome back to my awesome app.';
+      } else if (response.status === 'not_authorized') {
+         // The person is logged into Facebook, but not your app.
+         // document.getElementById('status').innerHTML = 'Please log ' +
+         // 'into this app.';
+      } else {
+         // The person is not logged into Facebook, so we're not sure if
+         // they are logged into this app or not.
+         // document.getElementById('status').innerHTML = 'Please log ' +
+         // 'into Facebook.';
+      }
+   }
+   // Here we run a very simple test of the Graph API after login is
+   // successful.  See statusChangeCallback() for when this call is made.
+   // function testAPI() {
+   //    console.log('Welcome!  Fetching your information.... ');
+   //    FB.api('/me', function(response) {
+   //       console.log('Successful login for: ' + response.name);
+   //       document.getElementById('status').innerHTML =
+   //       'Thanks for logging in, ' + response.name + '!';
+   //    });
+   // }
+
+
+   </script>
+   <!-- Firebae JS -->
    <script>
    // Initialize Firebase
    var config = {
@@ -17,70 +77,122 @@
       storageBucket: "my25pics.appspot.com",
    };
    firebase.initializeApp(config);
+   // Get a reference to the database service
+   var database = firebase.database();
    </script>
 
    <script>
    window.fbAsyncInit = function() {
       FB.init({
+
          appId      : '800212700114821',
+         cookie     : true,  // enable cookies to allow the server to access
+         // the session
          xfbml      : true,
          status     : true, // check login status
          version    : 'v2.6'
       });
+
+
+      // Now that we've initialized the JavaScript SDK, we call
+      // FB.getLoginStatus().  This function gets the state of the
+      // person visiting this page and can return one of three states to
+      // the callback you provide.  They can be:
+      //
+      // 1. Logged into your app ('connected')
+      // 2. Logged into Facebook, but not your app ('not_authorized')
+      // 3. Not logged into Facebook and can't tell if they are logged into
+      //    your app or not.
+      //
+      // These three cases are handled in the callback function.
+      FB.getLoginStatus(function(response) {
+         statusChangeCallback(response);
+      });
+
    };
 
-   (function(d, s, id){
+   // Load the SDK asynchronously
+   (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
+      if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
    </script>
-
-   <script>
-   var provider = new firebase.auth.FacebookAuthProvider();
-   provider.addScope('user_photos');
-   provider.addScope('user_friends');
-   firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
-      console.log(token);
-      // The signed-in user info.
-
-      var user = result.user;
-      console.log(user);
-      var user = firebase.auth().currentUser;
-      console.log(user);
-
-      if (user != null) {
-         user.providerData.forEach(function (profile) {
-            console.log("Sign-in provider: "+profile.providerId);
-            console.log("  Provider-specific UID: "+profile.uid);
-            console.log("  Name: "+profile.displayName);
-            console.log("  Email: "+profile.email);
-            console.log("  Photo URL: "+profile.photoURL);
-
-         });
-      }
-   }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-   });
-   </script>
-   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
 </head>
 <body>
-   <!-- The surrounding HTML is left untouched by FirebaseUI.
-   Your app may use that space for branding, controls and other customizations.-->
-   <h1>Welcome to My Awesome App</h1>
-   <button onclick="myFunc()">Click me please</button>
-   <!-- <div id="firebaseui-auth-container"></div> -->
+
+   <nav class="navbar navbar-default">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+         </div>
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+         </ul>
+      </div>
+   </nav>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-3">
+            <a class="btn btn-block btn-social btn-facebook" onclick="signInAndSave()">
+               <span class="fa fa-facebook"></span> Sign in with Facebook
+            </a>
+         </div>
+         <div class="col-md-3">
+            <a class="btn btn-block btn-social btn-facebook" onclick="blah()">
+               <span class="fa fa-facebook"></span> Test button
+            </a>
+         </div>
+         <div class="col-md-6">
+            <div class="alert alert-danger" role="alert" id="status">
+
+            </div>
+         </div>
+      </div>
+      <div class="row" id="userInfo">
+      </div>
+      <div class="row" id="links">
+      </div>
+      <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+      <div id="blueimp-gallery" class="blueimp-gallery">
+         <!-- The container for the modal slides -->
+         <div class="slides"></div>
+         <!-- Controls for the borderless lightbox -->
+         <h3 class="title"></h3>
+         <a class="prev">‹</a>
+         <a class="next">›</a>
+         <a class="close">×</a>
+         <a class="play-pause"></a>
+         <ol class="indicator"></ol>
+         <!-- The modal dialog, which will be used to wrap the lightbox content -->
+         <div class="modal fade">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" aria-hidden="true">&times;</button>
+                     <h4 class="modal-title"></h4>
+                  </div>
+                  <div class="modal-body next"></div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                     </button>
+                     <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script src="js/redirect.js"></script>
 </body>
 </html>

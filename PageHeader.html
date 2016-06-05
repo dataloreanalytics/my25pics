@@ -1,57 +1,121 @@
-<!-- Jquery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <!-- Bootstrap CSS-->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-<!-- Bootstrap JS -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- Underscore-min JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+<!-- Social buttons CSS -->
+<link rel="stylesheet" href="https://dataloreanalytics.github.io/my25pics/css/bootstrap-social.css">
 <!-- blueimp-gallery CSS -->
 <link rel="stylesheet" href="https://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 <!-- bootstrap image gallery css -->
 <link rel="stylesheet" href="http://dataloreanalytics.github.io/my25pics/css/bootstrap-image-gallery.min.css">
+<!-- Custom css for my page -->
+<link rel="stylesheet" href="http://dataloreanalytics.github.io/my25pics/css/custom.css">
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!-- Firebase app JS -->
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+<!-- firebase auth js -->
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+<!-- firebase js -->
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<!-- Underscore-min JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <!-- blueimp-gallery JS -->
 <script src="https://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
 <!-- bootstrap-image-gallery JS -->
 <script src="http://dataloreanalytics.github.io/my25pics/js/bootstrap-image-gallery.min.js"></script>
-<!-- My CSS File -->
-<link rel="stylesheet" href="https://dataloreanalytics.github.io/my25pics/css/custom.css">
-<!-- Font Awesome CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-<!-- Social buttons CSS -->
-<link rel="stylesheet" href="https://dataloreanalytics.github.io/my25pics/css/bootstrap-social.css">
-<!-- Initilaizng facebook JS SDK -->
+<!-- Initialize firebase and download FB JS SDK -->
 <script>
-window.fbAsyncInit = function() {
-   FB.init({
-      appId      : '800212700114821',
-      xfbml      : true,
-      status     : true, // check login status
-      cookie     : true, // enable cookies to allow the server to access the session
-      version    : 'v2.6'
-   });
-};
+//Facebook JS SDK
+// This is called with the results from from FB.getLoginStatus().
+function statusChangeCallback(response) {
+   console.log('statusChangeCallback');
+   console.log(response);
+   // The response object is returned with a status field that lets the
+   // app know the current login status of the person.
+   // Full docs on the response object can be found in the documentation
+   // for FB.getLoginStatus().
+   if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      // document.getElementById('status').innerHTML = 'Welcome back to my awesome app.';
+   } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      // 'into this app.';
+   } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      // document.getElementById('status').innerHTML = 'Please log ' +
+      // 'into Facebook.';
+   }
+}
+// Here we run a very simple test of the Graph API after login is
+// successful.  See statusChangeCallback() for when this call is made.
+// function testAPI() {
+//    console.log('Welcome!  Fetching your information.... ');
+//    FB.api('/me', function(response) {
+//       console.log('Successful login for: ' + response.name);
+//       document.getElementById('status').innerHTML =
+//       'Thanks for logging in, ' + response.name + '!';
+//    });
+// }
 
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+
 </script>
-
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<!-- Firebae JS -->
 <script>
 // Initialize Firebase
 var config = {
    apiKey: "AIzaSyDXedU_J6GXO-AaQ9lKhDEKFEjBVAVghKQ",
    authDomain: "my25pics.firebaseapp.com",
    databaseURL: "https://my25pics.firebaseio.com",
-   storageBucket: "",
+   storageBucket: "my25pics.appspot.com",
 };
 firebase.initializeApp(config);
+// Get a reference to the database service
+var database = firebase.database();
 </script>
 
-<!-- My facebook JS  -->
-<script src="http://dataloreanalytics.github.io/my25pics/js/FBGetPhotos.js"></script>
+<script>
+window.fbAsyncInit = function() {
+   FB.init({
+
+      appId      : '800212700114821',
+      cookie     : true,  // enable cookies to allow the server to access
+      // the session
+      xfbml      : true,
+      status     : true, // check login status
+      version    : 'v2.6'
+   });
+
+
+   // Now that we've initialized the JavaScript SDK, we call
+   // FB.getLoginStatus().  This function gets the state of the
+   // person visiting this page and can return one of three states to
+   // the callback you provide.  They can be:
+   //
+   // 1. Logged into your app ('connected')
+   // 2. Logged into Facebook, but not your app ('not_authorized')
+   // 3. Not logged into Facebook and can't tell if they are logged into
+   //    your app or not.
+   //
+   // These three cases are handled in the callback function.
+   FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+   });
+
+};
+
+// Load the SDK asynchronously
+(function(d, s, id) {
+   var js, fjs = d.getElementsByTagName(s)[0];
+   if (d.getElementById(id)) return;
+   js = d.createElement(s); js.id = id;
+   js.src = "//connect.facebook.net/en_US/sdk.js";
+   fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- bootstrap-image-gallery JS -->
+<script src="http://dataloreanalytics.github.io/my25pics/js/signInAndSave.js"></script>
