@@ -78,6 +78,8 @@ function signInAndSave(){
 
 function createAlertDiv(message, isSuccess){
    var alert = $("#alert");
+   alert.empty();
+   links.empty();
    var divType
    if(isSuccess){
       divType = '<div class="alert alert-success">'+ message +'</div>';
