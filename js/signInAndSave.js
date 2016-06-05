@@ -28,13 +28,10 @@ function signInAndSave(){
             // console.log(user);
             // console.log(response.name);
             var imagesDiv = $("#links");
-            var userInfoDiv = $("#userInfo");
             imagesDiv.empty();
-            userInfoDiv.empty();
             // console.log(response.albums.data.length);
             // console.log(JSON.stringify(response.albums.data));
             var name = response.name;
-            userInfoDiv.append('<h2>Hello ' + name + '.</h2>')
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
             var top_25 = [];
@@ -78,9 +75,7 @@ function signInAndSave(){
 
 function createAlertDiv(message, isSuccess){
    var alert = $("#alert");
-   var links = $("#links");
    alert.empty();
-   links.empty();
    var divType
    if(isSuccess){
       divType = '<div class="alert alert-success">'+ message +'</div>';
@@ -89,7 +84,7 @@ function createAlertDiv(message, isSuccess){
    }
    alert.append(divType);
    $("#alertRow").fadeIn(1000);
-   $("#alertRow").fadeOut(10000);
+   $("#alertRow").fadeOut(6000);
 }
 
 function getPhotosFromAlbum(allAlbum){
@@ -125,6 +120,8 @@ function getPhotosFromAlbum(allAlbum){
 
 function logout(){
    firebase.auth().signOut().then(function() {
+      var links = $("#links");
+      links.empty();
       $("#logoutRow").fadeOut(200);
       $("#loginRow").fadeIn(5000);
       createAlertDiv("You have been logged out. Thank you for using my25pics.", true);
