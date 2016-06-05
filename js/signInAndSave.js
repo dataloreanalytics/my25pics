@@ -45,7 +45,7 @@ function signInAndSave(){
                // </a>
                var div_up = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">'
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
-               var img = '<img src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
+               var img = '<img class="img-responsive" src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
                var append = a + img;
                var append = append;
                imagesDiv.append(append).fadeIn(3000);
