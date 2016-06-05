@@ -80,7 +80,7 @@ function createAlertDiv(message, isSuccess){
    if(isSuccess){
       divType = '<div class="alert alert-success">'+ message +'</div>';
    } else{
-      divType = '<div class="alert alert-success">'+ message +'</div>';
+      divType = 'div class="alert alert-danger">'+ message +'</div>';
    }
    alert.append(divType);
    $("#alertRow").fadeIn(1000);
