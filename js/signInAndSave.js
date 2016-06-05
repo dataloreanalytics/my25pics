@@ -56,7 +56,7 @@ function signInAndSave(){
             }
             // console.log(JSON.stringify(top_25));
             writeUserData(userId, response, top_25) ;
-            $("#loginRow").fadeOut(2000);
+            $("#loginRow").fadeOut(200);
             $("#logoutRow").fadeIn(5000);
             createAlertDiv("Succesfully logged in", true);
          }
@@ -125,7 +125,7 @@ function getPhotosFromAlbum(allAlbum){
 
 function logout(){
    firebase.auth().signOut().then(function() {
-      $("#logoutRow").fadeOut(2000);
+      $("#logoutRow").fadeOut(200);
       $("#loginRow").fadeIn(5000);
       createAlertDiv("You have been logged out. Thank you for using my25pics.", true);
 
