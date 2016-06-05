@@ -78,6 +78,7 @@ function signInAndSave(){
 
 function createAlertDiv(message, isSuccess){
    var alert = $("#alert");
+   var links = $("#links");
    alert.empty();
    links.empty();
    var divType
