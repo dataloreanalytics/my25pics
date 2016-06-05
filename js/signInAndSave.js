@@ -10,6 +10,11 @@ function signInAndSave(){
       var user = result.user;
 
       var userId = user.uid;
+      FB.api(
+         '/me/albums', {access_token: token}, function(response) {
+            console.log(response);
+         }
+      );
       // console.log(userId);
       // ...
       // Get a reference to the database service
