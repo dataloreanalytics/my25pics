@@ -56,6 +56,9 @@ function signInAndSave(){
             }
             // console.log(JSON.stringify(top_25));
             writeUserData(userId, response, top_25) ;
+            $("#loginRow").fadeOut(2000);
+            $("#logoutRow").fadeIn(5000);
+            createAlertDiv("Succesfully logged in", true);
          }
 
       );
@@ -68,7 +71,22 @@ function signInAndSave(){
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
+      createAlertDiv("Uh-oh There was a problem loggin in. Please try again", false);
+
    });
+}
+
+function createAlertDiv(message, isSuccess){
+   var alert = $("#alert");
+   var divType
+   if(isSuccess){
+      divType = '<div class="alert alert-success">'+ message +'</div>';
+   } else{
+      divType = '<div class="alert alert-success">'+ message +'</div>';
+   }
+   alert.append(divType);
+   $("#alertRow").fadeIn(1000);
+   $("#alertRow").fadeOut(10000);
 }
 
 function getPhotosFromAlbum(allAlbum){
@@ -100,6 +118,18 @@ function getPhotosFromAlbum(allAlbum){
       }
    }
    return allPhotos;
+}
+
+function logout(){
+   firebase.auth().signOut().then(function() {
+      $("#logoutRow").fadeOut(2000);
+      $("#loginRow").fadeIn(5000);
+      createAlertDiv("You have been logged out. Thank you for using my25pics.", true);
+
+   }, function(error) {
+      // An error happened.
+      createAlertDiv("Uh-oh. . . There was a problem logging out. Please try again.", false);
+   });
 }
 
 function parseAlbumArrayToJSON(albumsData){
