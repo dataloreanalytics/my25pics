@@ -44,7 +44,16 @@ function signInAndSave(){
                var div_col = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">';
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'>';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-responsive"> </a> </div>';
-               var append = div_col + a + img;
+               var append;
+               if(i == 0 || i == 4 || i == 9 || i == 14 || i == 19 || i == 24){
+                  var div_row = '<div class="row>"'
+                  append = div_row + div_col + a + img;
+               } else if(i == 5 || i == 10 || i == 15 || i == 20 || i == 25){
+                  var div_col = '</div> <div class="col-lg-3 col-md-4 col-xs-6 thumb">';
+                  var append = div_col + a + img;
+               } else {
+                  var append = div_col + a + img;
+               }
                imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
