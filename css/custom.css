@@ -9,3 +9,7 @@
 #links a {
    padding: 5px;
 }
+
+.container{
+   max-width: 704px;
+}
