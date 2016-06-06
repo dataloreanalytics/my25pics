@@ -36,7 +36,7 @@ function signInAndSave(){
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
-               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a>';
+               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' style="max-height:150px"> </a>';
                var append = a + img;
                if( i % 5 == 0 && i != 0){
                   console.log(i);
