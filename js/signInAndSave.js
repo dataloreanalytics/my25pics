@@ -25,14 +25,15 @@ function signInAndSave(){
             'access_token' : token
          },
          function(response) {
-            var imgThumbnails = $("#links");
+            var imgThumbnails = $("#imgThumbnails");
             imgThumbnails.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
             var top_25 = [];
             for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
-               var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
+               // var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
+               var thumbNail = sortedPhotos[i].images[2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
                // <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -112,6 +113,7 @@ function getPhotosFromAlbum(allAlbum){
    }
    return allPhotos;
 }
+
 
 function logout(){
    firebase.auth().signOut().then(function() {
