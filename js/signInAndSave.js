@@ -9,11 +9,11 @@ function signInAndSave(){
       var user = result.user;
 
       var userId = user.uid;
-      FB.api(
-         '/me/albums', {access_token: token}, function(response) {
-            console.log(response);
-         }
-      );
+      // FB.api(
+      //    '/me/albums', {access_token: token}, function(response) {
+      //       console.log(response);
+      //    }
+      // );
       // ...
       // Get a reference to the database service
       var database = firebase.database();
@@ -44,7 +44,7 @@ function signInAndSave(){
                var grid_item = '<div class="grid-item">';
                var masonry_img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
                var masonryAppend = grid_item + masonry_img;
-               masonry.append(masonryAppend).fadeIn(1500);
+               masonry.append(masonryAppend);
             }
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
