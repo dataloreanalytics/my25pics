@@ -25,8 +25,8 @@ function signInAndSave(){
             'access_token' : token
          },
          function(response) {
-            var imagesDiv = $("#links");
-            imagesDiv.empty();
+            var imgThumbnails = $("#imgThumbnails");
+            imgThumbnails.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
@@ -35,14 +35,16 @@ function signInAndSave(){
                var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
-               var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
-               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' style="max-height:150px"> </a>';
-               var append = a + img;
-               if( i == 4 || i == 9 || i == 14 || i == 19 || i == 24){
-                  console.log(i);
-                  append = append + '<br>';
-               }
-               imagesDiv.append(append).fadeIn(3000);
+               // <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+               //     <a class="thumbnail" href="#">
+               //         <img class="img-responsive" src="http://placehold.it/400x300" alt="">
+               //     </a>
+               // </div>
+               var div_col = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">';
+               var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'>';
+               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-responsive"> </a> </div>';
+               var append = div_col a + img;
+               imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
             writeUserData(userId, response, top_25) ;
