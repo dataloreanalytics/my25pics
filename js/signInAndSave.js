@@ -38,6 +38,9 @@ function signInAndSave(){
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a>';
                var append = a + img;
+               if( i % 5 == 0){
+                  append = append + '<br>';
+               }
                imagesDiv.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
