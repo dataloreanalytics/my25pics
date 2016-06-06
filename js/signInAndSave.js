@@ -27,7 +27,7 @@ function signInAndSave(){
          function(response) {
             var imgThumbnails = $("#imgThumbnails");
             var img_row = $(".img-row");
-            imgThumbnails.empty();
+            // imgThumbnails.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
