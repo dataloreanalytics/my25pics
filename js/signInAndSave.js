@@ -26,6 +26,7 @@ function signInAndSave(){
          },
          function(response) {
             var imgThumbnails = $("#imgThumbnails");
+            var img_row = $(".img-row");
             imgThumbnails.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
@@ -36,24 +37,22 @@ function signInAndSave(){
                var thumbNail = sortedPhotos[i].images[2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
-               // <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-               //     <a class="thumbnail" href="#">
-               //         <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-               //     </a>
-               // </div>
-               var div_col = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">';
+               var div_col = '<div class="col-lg-2 thumb">';
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'>';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-responsive"> </a> </div>';
-               var append;
-               if(i == 0 || i == 4 || i == 9 || i == 14 || i == 19 || i == 24){
-                  var div_row = '<div class="row>"'
-                  append = div_row + div_col + a + img;
-               } else if(i == 5 || i == 10 || i == 15 || i == 20 || i == 25){
-                  var div_col = '</div> <div class="col-lg-3 col-md-4 col-xs-6 thumb">';
-                  var append = div_col + a + img;
-               } else {
-                  var append = div_col + a + img;
+               var append = div_col + a + img;
+               if(i < 5){
+                  img_row.eq(0).append(append);
+               } else if ( i > 4 && i < 10){
+                  img_row.eq(1).append(append);
+               } else if ( i > 9 && i < 15){
+                  img_row.eq(2).append(append);
+               } else if ( i > 14 && i < 20){
+                  img_row.eq(3).append(append);
+               } else if ( i > 19 && i < 25){
+                  img_row.eq(4).append(append);
                }
+
                imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
