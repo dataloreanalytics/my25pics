@@ -72,8 +72,7 @@ function signInAndSave(){
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
-      // logErrorsOnDB
-      console.log(error);
+      logErrorsOnDB(error);
       createAlertDiv("Uh-oh There was a problem loggin in. Please try again", false);
 
    });
