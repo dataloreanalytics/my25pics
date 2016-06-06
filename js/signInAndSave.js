@@ -36,14 +36,15 @@ function signInAndSave(){
                var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
-               // var div_up = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">'
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
-               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> ';
+               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a>';
                var append = a + img;
-               var append = append;
                imagesDiv.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
                var grid_item = '<div class="grid-item">';
+               var masonry_img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
+               var masonryAppend = grid_item + masonry_img;
+               masonry.append(masonryAppend).fadeIn(1500);
             }
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
