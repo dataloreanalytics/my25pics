@@ -38,7 +38,7 @@ function signInAndSave(){
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' style="max-height:150px"> </a>';
                var append = a + img;
-               if( i == 3 || i == 8 || i == 13 || i == 18 || i == 23 ){
+               if( i == 4 || i == 9 || i == 14 || i == 19 || i == 24){
                   console.log(i);
                   append = append + '<br>';
                }
