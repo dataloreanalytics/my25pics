@@ -53,7 +53,7 @@ function signInAndSave(){
                   img_row.eq(4).append(append);
                }
 
-               imgThumbnails.append(append).fadeIn(3000);
+               // imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
             writeUserData(userId, response, top_25) ;
