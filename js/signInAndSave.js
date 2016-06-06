@@ -38,7 +38,7 @@ function signInAndSave(){
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'data-gallery> ';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a>';
                var append = a + img;
-               if( i % 5 == 0){
+               if( i % 5 == 0 && i != 0){
                   console.log(i);
                   append = append + '<br>';
                }
