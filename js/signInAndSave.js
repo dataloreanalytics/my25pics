@@ -33,8 +33,8 @@ function signInAndSave(){
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
             var top_25 = [];
             for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
-               // var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
-               var thumbNail = sortedPhotos[i].images[2].source;
+               var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
+               // var thumbNail = sortedPhotos[i].images[2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
                var div_col = '<div class="col-lg-2 thumb">';
