@@ -25,7 +25,7 @@ function signInAndSave(){
             'access_token' : token
          },
          function(response) {
-            var imgThumbnails = $("#imgThumbnails");
+            var imgThumbnails = $("#links");
             imgThumbnails.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
