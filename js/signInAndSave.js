@@ -37,7 +37,7 @@ function signInAndSave(){
                // var thumbNail = sortedPhotos[i].images[2].source;
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
-               var div_col = '<div class="col-lg-2 thumb">';
+               var div_col = '<div class="col-md-2 ">';
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'>';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-responsive"> </a> </div>';
                var append = div_col + a + img;
