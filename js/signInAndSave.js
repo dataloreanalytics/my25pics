@@ -26,7 +26,6 @@ function signInAndSave(){
          },
          function(response) {
             var imagesDiv = $("#links");
-            var masonry = $("#masonry");
             imagesDiv.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
@@ -41,10 +40,6 @@ function signInAndSave(){
                var append = a + img;
                imagesDiv.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
-               var grid_item = '<div class="grid-item">';
-               var masonry_img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +'> </a> </div>';
-               var masonryAppend = grid_item + masonry_img;
-               masonry.append(masonryAppend);
             }
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
