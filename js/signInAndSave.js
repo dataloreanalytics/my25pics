@@ -43,7 +43,7 @@ function signInAndSave(){
                var div_col = '<div class="col-lg-3 col-md-4 col-xs-6 thumb">';
                var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +'>';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-responsive"> </a> </div>';
-               var append = div_col a + img;
+               var append = div_col + a + img;
                imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
