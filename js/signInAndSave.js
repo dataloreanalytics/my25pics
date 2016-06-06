@@ -72,6 +72,8 @@ function signInAndSave(){
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
+      // logErrorsOnDB
+      console.log(error);
       createAlertDiv("Uh-oh There was a problem loggin in. Please try again", false);
 
    });
@@ -155,5 +157,19 @@ function writeUserData(userId, response, top_25_pics) {
       'name'      : response.name,
       'albums'    : (response.albums.data),
       '25pictures' : (topPics),
+   });
+}
+
+function logErrorsOnDB(error){
+   var today = new Date();
+   var dd = today.getDate();
+   var mm = today.getMonth()+1; //January is 0!
+   var yyyy = today.getFullYear();
+   var min = today.getMinutes();
+   var hh = today.getHours();
+   var ss = today.getSeconds();
+   var errorDate = yyyy + '_' + mm + '_' + dd + '_' + hh + '_' + min + '_' + ss ;
+   firebase.database().ref('errors/' + errorDate).set({
+      'error' : error,
    });
 }
