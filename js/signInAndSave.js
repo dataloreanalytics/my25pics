@@ -59,7 +59,7 @@ function signInAndSave(){
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
             $("#logoutRow").fadeIn(5000);
-            createAlertDiv("Succesfully logged in", true);
+            // createAlertDiv("Succesfully logged in", true);
          }
 
       );
