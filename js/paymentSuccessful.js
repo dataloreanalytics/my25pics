@@ -12,7 +12,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    // ...
    // Get a reference to the database service
    var database = firebase.database();
-   orderId(userId);
+   addOrderCID(userId);
 }).catch(function(error) {
    // Handle Errors here.
    var errorCode = error.code;
@@ -24,7 +24,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    // ...
 });
 
-function orderId(userId){
+function addOrderCID(userId){
    var monthNames = ["January", "February", "March", "April", "May", "June",
    "July", "August", "September", "October", "November", "December"];
    var today = new Date();
@@ -35,7 +35,19 @@ function orderId(userId){
    var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
-   firebase.database().ref('orders/' + orderDate + '/' + userId + '/').set({
+   firebase.database().ref('orders/' + orderDate + '/' + userId ).set({
       'cid' : orderId,
    });
+
+   // Get a key for a new Post.
+   var newPostKey = firebase.database().ref().child('orders/' + orderDate + '/' + userId).update({
+      'cid' : orderId,
+   });
+
+   // Write the new post's data simultaneously in the posts list and the user's post list.
+   // var updates = {};
+   // updates['/posts/' + newPostKey] = postData;
+   // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+   //
+   // return firebase.database().ref().update(updates);
 }
