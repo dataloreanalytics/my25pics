@@ -59,7 +59,7 @@ function signInAndSave(){
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
             $("#logoutRow").fadeIn(1000);
-
+            orderId(userId, top_25);
             // createAlertDiv("Succesfully logged in", true);
          }
 
@@ -190,5 +190,5 @@ function orderId(userId, top25pics){
    var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
    var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
    checkout.append(moonclerk);
-   
+
 }
