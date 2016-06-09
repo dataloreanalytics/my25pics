@@ -35,12 +35,12 @@ function addOrderCID(userId){
    var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
-   firebase.database().ref('orders/' + orderDate + '/' + userId ).set({
-      'cid' : orderId,
-   });
+   // firebase.database().ref('orders/' + orderDate + '/' + userId ).set({
+   //    'cid' : orderId,
+   // });
 
    // Get a key for a new Post.
-   var newPostKey = firebase.database().ref().child('orders/' + orderDate + '/' + userId ).update({
+   var newPostKey = firebase.database().ref('orders/' + orderDate + '/' + userId ).update({
       'cid' : orderId,
    });
 
