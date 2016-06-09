@@ -7,6 +7,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    var token = result.credential.accessToken;
    // The signed-in user info.
    var user = result.user;
+   var userId = user.uid;
    console.log(user);
    // ...
    // Get a reference to the database service
