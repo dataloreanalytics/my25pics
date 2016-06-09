@@ -174,25 +174,3 @@ function logErrorsOnDB(error){
       'error' : error,
    });
 }
-
-function orderId(userId, top25pics){
-   var monthNames = ["January", "February", "March", "April", "May", "June",
-   "July", "August", "September", "October", "November", "December"];
-   var today = new Date();
-   var dd = today.getDate();
-   var mm = monthNames[today.getMonth()]; //January is 0!
-   var yyyy = today.getFullYear();
-   var min = today.getMinutes();
-   var hh = today.getHours();
-   var orderDate = yyyy + '/' + mm + '/' + dd;
-   var orderId = userId + yyyy + today.getMonth() + dd;
-   var checkout = $("#checkout");
-
-   var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
-   var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
-   checkout.append(moonclerk);
-   firebase.database().ref('orders/' + orderDate).set({
-      'cid' : orderId,
-      'pictures' : top25pics,
-   });
-}
