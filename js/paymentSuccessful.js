@@ -40,7 +40,7 @@ function addOrderCID(userId){
    });
 
    // Get a key for a new Post.
-   var newPostKey = firebase.database().ref().child('orders/' + orderDate + '/' + userId).update({
+   var newPostKey = firebase.database().ref().child('orders/' + orderDate + '/' + userId + '/').update({
       'cid' : orderId,
    });
 
