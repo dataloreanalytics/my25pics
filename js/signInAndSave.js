@@ -176,9 +176,11 @@ function logErrorsOnDB(error){
 }
 
 function orderId(userId, top25pics){
+   var monthNames = ["January", "February", "March", "April", "May", "June",
+   "July", "August", "September", "October", "November", "December"];
    var today = new Date();
    var dd = today.getDate();
-   var mm = today.getMonth()+1; //January is 0!
+   var mm = monthNames[today.getMonth()]; //January is 0!
    var yyyy = today.getFullYear();
    var min = today.getMinutes();
    var hh = today.getHours();
