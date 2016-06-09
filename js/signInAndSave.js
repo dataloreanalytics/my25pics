@@ -190,7 +190,7 @@ function orderId(userId, top25pics){
    var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
    var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
    checkout.append(moonclerk);
-   firebase.database().ref('orders/' + orderDate).set({
+   firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'pictures' : top25pics,
    });
 

@@ -35,7 +35,7 @@ function orderId(userId){
    var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
-   firebase.database().ref('orders/' + orderDate).set({
+   firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'cid' : orderId,
    });
 }
