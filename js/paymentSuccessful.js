@@ -8,10 +8,11 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    // The signed-in user info.
    var user = result.user;
    var userId = user.uid;
-   console.log(user);
+   console.log(userId);
    // ...
    // Get a reference to the database service
    var database = firebase.database();
+   orderId(userId);
 }).catch(function(error) {
    // Handle Errors here.
    var errorCode = error.code;
@@ -23,7 +24,7 @@ firebase.auth().signInWithPopup(provider).then(function(result) {
    // ...
 });
 
-function orderId(userId, top25pics){
+function orderId(userId){
    var monthNames = ["January", "February", "March", "April", "May", "June",
    "July", "August", "September", "October", "November", "December"];
    var today = new Date();
@@ -34,13 +35,7 @@ function orderId(userId, top25pics){
    var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
-   var checkout = $("#checkout");
-
-   var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
-   var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
-   checkout.append(moonclerk);
    firebase.database().ref('orders/' + orderDate).set({
       'cid' : orderId,
-      'pictures' : top25pics,
    });
 }
