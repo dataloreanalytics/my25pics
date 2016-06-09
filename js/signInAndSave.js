@@ -58,7 +58,8 @@ function signInAndSave(){
             }
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
-            $("#logoutRow").fadeIn(5000);
+            $("#logoutRow").fadeIn(1000);
+
             // createAlertDiv("Succesfully logged in", true);
          }
 
@@ -170,5 +171,25 @@ function logErrorsOnDB(error){
    var errorDate = yyyy + '_' + mm + '_' + dd + '_' + hh + '_' + min + '_' + ss ;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
+   });
+}
+
+function orderId(userId, top25pics){
+   var today = new Date();
+   var dd = today.getDate();
+   var mm = today.getMonth()+1; //January is 0!
+   var yyyy = today.getFullYear();
+   var min = today.getMinutes();
+   var hh = today.getHours();
+   var orderDate = yyyy + '/' + mm + '/' + dd;
+   var orderId = userId + yyyy + mm + dd;
+   var checkout = $("#checkout");
+
+   var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
+   var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Link Button</a>';
+   checkout.append(moonclerk);
+   firebase.database().ref('orders/' + orderDate).set({
+      'cid' : orderId,
+      'pictures' : top25pics,
    });
 }
