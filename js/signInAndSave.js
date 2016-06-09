@@ -185,7 +185,7 @@ function orderId(userId, top25pics){
    var min = today.getMinutes();
    var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
-   var orderId = userId + yyyy + mm + dd;
+   var orderId = userId + yyyy + today.getMonth() + dd;
    var checkout = $("#checkout");
 
    var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
