@@ -186,8 +186,7 @@ function orderId(userId, top25pics){
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
    var checkout = $("#checkout");
-
-   var link="https://app.moonclerk.com/pay/gkq6vcpdo5p?cid=" + orderId;
+   var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
    var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
    checkout.append(moonclerk);
    firebase.database().ref('orders/' + orderDate + '/' + userId).set({
