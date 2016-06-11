@@ -38,7 +38,7 @@ function signInAndSave(){
                var highResImg = sortedPhotos[i].images[0].source;
                var name = sortedPhotos[i].name;
                var div_col = '<div class="col-md-2 ">';
-               var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +' data-lightbox='+ '"' + name +'"'  + '>';
+               var a =  '<a href=\"' + highResImg +  '\" title='+ '"' + name  + '" ' +' data-lightbox="top25pics"'+ +' data-title='+ '"' + name +'"'  + '>';
                var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-responsive"> </a> </div>';
                var append = div_col + a + img;
                if(i < 5){
