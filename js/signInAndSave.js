@@ -27,11 +27,13 @@ function signInAndSave(){
          function(response) {
             var imgThumbnails = $("#imgThumbnails");
             var img_row = $(".img-row");
+            var step2 = $("#step2");
             // imgThumbnails.empty();
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
             var top_25 = [];
+            step2.html("Step 2");
             for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
                var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
                // var thumbNail = sortedPhotos[i].images[2].source;
@@ -134,7 +136,8 @@ function logout(){
       for( var i = 0; i < img_row.length; i++){
          img_row.eq(i).empty();
       }
-
+      var step2 = $("#step2");
+      step2..empty();
    }, function(error) {
       // An error happened.
       createAlertDiv("Uh-oh. . . There was a problem logging out. Please try again.", false);
