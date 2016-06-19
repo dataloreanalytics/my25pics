@@ -60,7 +60,7 @@ function signInAndSave(){
                // <a href="img/img1.jpg">
                var a_light = '<a href="' + highResImg +'">';
                // <img src="img/thumb1.jpg" />
-               var img_light = '<img src="'+ +'" /></a>';
+               var img_light = '<img src="'+ thumbNail +'" /></a>';
                lightgallery.append(a_light + img_light);
 
                // imgThumbnails.append(append).fadeIn(3000);
