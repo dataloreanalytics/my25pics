@@ -22,6 +22,10 @@
    border: 2px solid #F7901E;
 }
 
+#checkout{
+   display: none;
+}
+
 .pricing-col{
    text-align: center;
 }

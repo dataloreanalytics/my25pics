@@ -56,7 +56,7 @@ function signInAndSave(){
                } else if ( i > 19 && i < 25){
                   img_row.eq(4).append(append);
                }
-               
+
                // imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
@@ -193,8 +193,9 @@ function orderId(userId, top25pics){
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
    var checkout = $("#checkout");
-   var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
-   var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
+   // var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
+   // var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
+   checkout.fadeIn(1500);
    checkout.append(moonclerk);
    firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'pictures' : top25pics,
