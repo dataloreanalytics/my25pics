@@ -56,7 +56,7 @@ function signInAndSave(){
                } else if ( i > 19 && i < 25){
                   img_row.eq(4).append(append);
                }
-               var lightgallery = $("lightgallery");
+               var lightgallery = $("#lightgallery");
                // <a href="img/img1.jpg">
                var a_light = '<a href="' + highResImg +'">';
                // <img src="img/thumb1.jpg" />
