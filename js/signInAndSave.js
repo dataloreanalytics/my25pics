@@ -137,7 +137,7 @@ function logout(){
          img_row.eq(i).empty();
       }
       var step2 = $("#step2");
-      step2..empty();
+      // step2..empty();
    }, function(error) {
       // An error happened.
       createAlertDiv("Uh-oh. . . There was a problem logging out. Please try again.", false);
