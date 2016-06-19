@@ -17,3 +17,7 @@
 .img-row{
    padding: 5px;
 }
+
+.thumbnail:hover{
+   border: 2px solid #F7901E;
+}
