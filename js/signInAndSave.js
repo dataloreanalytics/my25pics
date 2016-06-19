@@ -39,7 +39,7 @@ function signInAndSave(){
                var name = sortedPhotos[i].name;
                var div_col = '<div class="col-md-2 ">';
                var a =  '<a href=\"' + highResImg + '\"  data-title=\"'+  name + '\" data-lightbox=\"top25pics\">';
-               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-thumbnail" width="150px"> </a> </div>';
+               var img = '<img  src=\"' + thumbNail + '\" alt='+ '"' + name  + '" ' +' class="img-thumbnail" width="150px" height="200px"> </a> </div>';
                var append = div_col + a + img;
                if(i < 5){
                   img_row.eq(0).append(append);
