@@ -33,7 +33,9 @@ function signInAndSave(){
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
             var top_25 = [];
-            step2.html("Step 2");
+            step2.html("Step 2 : ");
+            var stepText = "<p>This is a simple step, look and appreciate all your pictures after all they are your most liked 25 pictures.</p>";
+            $(stepText).insertAfter(step2);
             for(i = 0; i< sortedPhotos.length && i < 25 ; i++){
                var thumbNail = sortedPhotos[i].images[sortedPhotos[i].images.length - 2].source;
                // var thumbNail = sortedPhotos[i].images[2].source;
