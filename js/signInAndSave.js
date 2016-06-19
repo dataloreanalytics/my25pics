@@ -127,11 +127,13 @@ function getPhotosFromAlbum(allAlbum){
 
 function logout(){
    firebase.auth().signOut().then(function() {
-      var links = $("#links");
-      links.empty();
+      var img_row = $(".img-row");
       $("#logoutRow").fadeOut(200);
       $("#loginRow").fadeIn(5000);
       createAlertDiv("You have been logged out. Thank you for using my25pics.", true);
+      for( var i = 0; i < img_row.length; i++){
+         img_row.eq(i).empty();
+      }
 
    }, function(error) {
       // An error happened.
