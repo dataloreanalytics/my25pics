@@ -56,13 +56,6 @@ function signInAndSave(){
                } else if ( i > 19 && i < 25){
                   img_row.eq(4).append(append);
                }
-               var lightgallery = $("#lightgallery");
-               // <a href="img/img1.jpg">
-               var a_light = '<a href="' + highResImg +'">';
-               // <img src="img/thumb1.jpg" />
-               var img_light = '<img src="'+ thumbNail +'" /></a>';
-               console.log(a_light + img_light);
-               lightgallery.append(a_light + img_light);
 
                // imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
