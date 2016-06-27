@@ -17,7 +17,8 @@ function signInAndSave(){
       // ...
       // Get a reference to the database service
       var database = firebase.database();
-      var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}';
+      //var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}';
+      var fields = 'id,name';
       $.get(
          "https://graph.facebook.com/me",
          {
@@ -25,6 +26,7 @@ function signInAndSave(){
             'access_token' : token
          },
          function(response) {
+            console.log(response);
             var imgThumbnails = $("#imgThumbnails");
             var img_row = $(".img-row");
             var step2 = $("#step2");
