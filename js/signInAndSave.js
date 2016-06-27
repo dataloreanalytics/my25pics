@@ -18,7 +18,7 @@ function signInAndSave(){
       // Get a reference to the database service
       var database = firebase.database();
       //var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}';
-      var fields = 'id,name,albums.limit(999999){name}';
+      var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images}}';
       $.get(
          "https://graph.facebook.com/me",
          {
@@ -198,7 +198,7 @@ function orderId(userId, top25pics){
    // var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
    // var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
    checkout.fadeIn(1500);
-   checkout.append(moonclerk);
+   // checkout.append(moonclerk);
    firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'pictures' : top25pics,
    });
