@@ -2,6 +2,7 @@ function signInAndSave(){
    var provider = new firebase.auth.FacebookAuthProvider();
    provider.addScope('user_photos');
    provider.addScope('user_friends');
+   provider.addScope('user_likes');
    firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
