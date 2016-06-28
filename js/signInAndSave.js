@@ -2,6 +2,7 @@ function signInAndSave(){
    var provider = new firebase.auth.FacebookAuthProvider();
    provider.addScope('user_photos');
    provider.addScope('user_friends');
+   provider.addScope('user_posts');
    provider.addScope('user_likes');
    firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -18,35 +19,6 @@ function signInAndSave(){
       // ...
       // Get a reference to the database service
       var database = firebase.database();
-      
-      FB.api(
-         '/me/',
-         'GET',
-         {
-            "fields" : "id,name,albums.limit(999999){name,count,id,location,description}",
-            //"fields" : "id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}",
-            "access_token" : token
-         },
-         function(response) {
-            console.log('test 1');
-            console.log(response);
-            
-         }
-      );
-      
-      FB.api(
-         '/me/',
-         'GET',
-         {
-            "fields" : "id,name",
-            "access_token" : token
-         },
-         function(response) {
-            console.log('test 2');
-            console.log(response);
-            
-         }
-      );
       
       //var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}';
       FB.api(
