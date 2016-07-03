@@ -23,7 +23,7 @@ function signInAndSave(){
          '/me/',
          'GET',
          {
-            "fields" : "id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes}}",
+            "fields" : "id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit{999999}}}",
             //"fields" : "id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}",
             "access_token" : token
          },
