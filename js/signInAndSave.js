@@ -62,8 +62,6 @@ function signInAndSave(){
                } else if ( i > 19 && i < 25){
                   img_row.eq(4).append(append);
                }
-               console.log(sortedPhotos[i]);
-               console.log(sortedPhotos[i].likes);
                // imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
