@@ -22,6 +22,7 @@ function signInAndSave(){
             "access_token" : token
          },
          function(response) {
+            console.log(response);
             var imgThumbnails = $("#imgThumbnails"); //reference to #imgThumbnails on the webpage.
             var img_row = $(".img-row"); //reference to .imm-row on the page.
             var step2 = $("#step2"); //reference to #step2 on the webpage
