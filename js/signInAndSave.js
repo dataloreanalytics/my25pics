@@ -9,32 +9,22 @@ function signInAndSave(){
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-
       var userId = user.uid;
-      // FB.api(
-      //    '/me/albums', {access_token: token}, function(response) {
-      //       console.log(response);
-      //    }
-      // );
-      // ...
       // Get a reference to the database service
       var database = firebase.database();
 
-      //var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}';
+      //Calling Facebook api to get images.
       FB.api(
          '/me/',
          'GET',
          {
             "fields" : "id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit{999999}}}",
-            //"fields" : "id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}",
             "access_token" : token
          },
          function(response) {
-            console.log(response);
-            var imgThumbnails = $("#imgThumbnails");
-            var img_row = $(".img-row");
-            var step2 = $("#step2");
-            // imgThumbnails.empty();
+            var imgThumbnails = $("#imgThumbnails"); //reference to #imgThumbnails on the webpage.
+            var img_row = $(".img-row"); //reference to .imm-row on the page.
+            var step2 = $("#step2"); //reference to #step2 on the webpage
             var name = response.name;
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
