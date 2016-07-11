@@ -19,7 +19,7 @@ function signInAndSave(){
       // ...
       // Get a reference to the database service
       var database = firebase.database();
-      
+
       //var fields = 'id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}';
       FB.api(
          '/me/',
@@ -62,7 +62,7 @@ function signInAndSave(){
                } else if ( i > 19 && i < 25){
                   img_row.eq(4).append(append);
                }
-
+               console.log(sortedPhotos[i]);
                // imgThumbnails.append(append).fadeIn(3000);
                top_25.push(sortedPhotos[i]);
             }
