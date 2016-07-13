@@ -6,6 +6,7 @@ if (user) {
   console.log(user);
 } else {
   // No user is signed in.
+  console.log("not logged in");
 }
 // firebase.auth().signInWithRedirect(provider);
 // firebase.auth().getRedirectResult().then(function(result) {
