@@ -1,31 +1,36 @@
 
-var provider = new firebase.auth.FacebookAuthProvider();
-provider.addScope('user_photos');
-provider.addScope('user_friends');
-firebase.auth().signInWithRedirect(provider);
-firebase.auth().getRedirectResult().then(function(result) {
-   if (result.credential) {
-      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      var userId = user.uid;
-      console.log(userId);
-      // ...
-      // Get a reference to the database service
-      var database = firebase.database();
-      addOrderCID(userId);
-   }
-}).catch(function(error) {
-   // Handle Errors here.
-   var errorCode = error.code;
-   var errorMessage = error.message;
-   // The email of the user's account used.
-   var email = error.email;
-   // The firebase.auth.AuthCredential type that was used.
-   var credential = error.credential;
-   // ...
-});
+var user = firebase.auth().currentUser;
+
+if (user) {
+  // User is signed in.
+  console.log(user);
+} else {
+  // No user is signed in.
+}
+// firebase.auth().signInWithRedirect(provider);
+// firebase.auth().getRedirectResult().then(function(result) {
+//    if (result.credential) {
+//       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+//       var token = result.credential.accessToken;
+//       // The signed-in user info.
+//       var user = result.user;
+//       var userId = user.uid;
+//       console.log(userId);
+//       // ...
+//       // Get a reference to the database service
+//       var database = firebase.database();
+//       addOrderCID(userId);
+//    }
+// }).catch(function(error) {
+//    // Handle Errors here.
+//    var errorCode = error.code;
+//    var errorMessage = error.message;
+//    // The email of the user's account used.
+//    var email = error.email;
+//    // The firebase.auth.AuthCredential type that was used.
+//    var credential = error.credential;
+//    // ...
+// });
 
 function addOrderCID(userId){
    var monthNames = ["January", "February", "March", "April", "May", "June",
@@ -43,7 +48,7 @@ function addOrderCID(userId){
    // });
 
    // Get a key for a new Post.
-   var newPostKey = firebase.database().ref('orders/' + orderDate + '/' + userId ).update({
+   var newPostKey = firebase.database().ref('paid_orders/' + orderDate + '/' + userId ).update({
       'cid' : orderId,
    });
 
