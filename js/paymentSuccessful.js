@@ -2,17 +2,20 @@
 var provider = new firebase.auth.FacebookAuthProvider();
 provider.addScope('user_photos');
 provider.addScope('user_friends');
-firebase.auth().signInWithPopup(provider).then(function(result) {
-   // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-   var token = result.credential.accessToken;
-   // The signed-in user info.
-   var user = result.user;
-   var userId = user.uid;
-   console.log(userId);
-   // ...
-   // Get a reference to the database service
-   var database = firebase.database();
-   addOrderCID(userId);
+firebase.auth().signInWithRedirect(provider);
+firebase.auth().getRedirectResult().then(function(result) {
+   if (result.credential) {
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      var userId = user.uid;
+      console.log(userId);
+      // ...
+      // Get a reference to the database service
+      var database = firebase.database();
+      addOrderCID(userId);
+   }
 }).catch(function(error) {
    // Handle Errors here.
    var errorCode = error.code;
