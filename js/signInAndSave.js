@@ -4,8 +4,7 @@ function signInAndSave(){
    provider.addScope('user_friends');
    provider.addScope('user_posts');
    provider.addScope('user_likes');
-   firebase.auth().signInWithRedirect(provider);
-   firebase.auth().getRedirectResult().then(function(result) {
+   firebase.auth().signInWithPopup(provider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // The signed-in user info.
