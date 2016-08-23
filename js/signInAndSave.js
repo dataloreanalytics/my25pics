@@ -163,7 +163,7 @@ function signInAndSave(){
       var topPicsDate = yyyy + '_' + mm + '_' + dd + '_top_25';
       var topPics = {};
       topPics[topPicsDate] = top_25_pics;
-      firebase.database().ref('users/' + userId).set({
+      firebase.database().ref('users/'+ yyyy + mm + dd + userId).set({
          'name'      : response.name,
          'albums'    : (response.albums.data),
          '25pictures' : (topPics),
