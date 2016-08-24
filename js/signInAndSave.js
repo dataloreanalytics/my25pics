@@ -171,7 +171,6 @@ function logErrorsOnDB(error){
    var hh = today.getHours();
    var ss = today.getSeconds();
    var errorDate = yyyy + '/' + mm + '/' + dd + '/' + hh + '/' + min + '_' + ss ;
-   var email = error.email;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
    });
