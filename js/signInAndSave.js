@@ -57,7 +57,7 @@ function signInAndSave(){
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
             $("#logoutRow").fadeIn(1000);
-            orderId(userId, top_25);
+            //orderId(userId, top_25);
             // createAlertDiv("Succesfully logged in", true);
          }
 
@@ -71,6 +71,7 @@ function signInAndSave(){
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
+      console.log(email);
       logErrorsOnDB(error);
       createAlertDiv("It seems like your Pop-up Blocker is enabled. Please add this site to your exception list, and try again.", false);
 
