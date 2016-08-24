@@ -80,7 +80,7 @@ function signInAndSave(){
 function createAlertDiv(message, isSuccess){
    var alert = $("#alert");
    alert.empty();
-   var divType
+   var divType;
    if(isSuccess){
       divType = '<div class="alert alert-success">'+ message +'</div>';
    } else{
@@ -170,7 +170,7 @@ function logErrorsOnDB(error){
    var min = today.getMinutes();
    var hh = today.getHours();
    var ss = today.getSeconds();
-   var errorDate = yyyy + '/' + mm + '/' + dd + '/' + hh + '/' + min + '/' + ss ;
+   var errorDate = yyyy + '/' + mm + '/' + dd + '/' + hh + '/' + min + '_' + ss ;
    var email = error.email;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
