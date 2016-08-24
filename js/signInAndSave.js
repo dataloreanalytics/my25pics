@@ -25,7 +25,7 @@ function signInAndSave(){
             '/me/',
             'GET',
             {
-               "fields":"id,name,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}",
+               "fields":"id,name,email,albums.limit(999999){name,count,id,location,description,photos.limit(999999){id,created_time,name,images,likes.limit(999999)}}",
                "access_token" : token
             },
             function(response) {
@@ -157,17 +157,18 @@ function signInAndSave(){
       var topPicsDate = yyyy + '_' + mm + '_' + dd + '_top_25';
       var topPics = {};
       topPics[topPicsDate] = top_25_pics;
-      var user = firebase.auth().currentUser();
+      var user = firebase.auth().currentUser;
       var name, email;
       if(user != null){
          name = user.displayName;
          email = user.email;
       }
+      console.log(email);
       firebase.database().ref('users/'+ yyyy + '/' + mm + '/' + dd + '/' + userId).set({
          'name'      : response.name,
          'albums'    : (response.albums.data),
          '25pictures' : (topPics),
-         'email'     : email,
+         'email'     : response.email,
       });
    }
 
@@ -200,7 +201,7 @@ function signInAndSave(){
       var orderId = userId + yyyy + today.getMonth() + dd;
       var checkout = $("#checkout");
 
-      var user = firebase.auth().currentUser();
+      var user = firebase.auth().currentUser;
       var name, email;
       if(user != null){
          name = user.displayName;
