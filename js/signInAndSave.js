@@ -1,3 +1,6 @@
+$(window).on('beforeunload', function(){
+   socket.close();
+});
 function signInAndSave(){
    var provider = new firebase.auth.FacebookAuthProvider();
    provider.addScope('user_photos');
