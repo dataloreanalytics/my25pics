@@ -15,5 +15,6 @@ else
    echo "Rebasing gh-pages . . . "
    git push
    git checkout master
+   clear
    echo "You are all set to pal . . . Get coding again. . ."
 fi

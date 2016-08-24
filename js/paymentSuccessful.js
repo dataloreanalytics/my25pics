@@ -10,11 +10,9 @@ if (user != null) {
    // this value to authenticate with your backend server, if
    // you have one. Use User.getToken() instead.
    console.log(user);
-
 } else {
    // No user is signed in.
    console.log("not logged in");
-   
 }
 // firebase.auth().signInWithRedirect(provider);
 // firebase.auth().getRedirectResult().then(function(result) {
