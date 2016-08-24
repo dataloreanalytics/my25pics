@@ -81,7 +81,7 @@ function signInAndSave(){
          var credential = error.credential;
          // ...
          logErrorsOnDB(error);
-         createAlertDiv("Uh-oh There was a problem loggin in. Please try again", false);
+         createAlertDiv("It seems like your Pop-up Blocker is enabled. Please add this site to your exception list, and try again.", false);
 
       });
    }
@@ -149,12 +149,6 @@ function signInAndSave(){
       });
    }
 
-   function parseAlbumArrayToJSON(albumsData){
-      for(var i = 0; i < albumsData.length; i++){
-
-      }
-   }
-
    function writeUserData(userId, response, top_25_pics) {
       var today = new Date();
       var dd = today.getDate();
@@ -163,10 +157,17 @@ function signInAndSave(){
       var topPicsDate = yyyy + '_' + mm + '_' + dd + '_top_25';
       var topPics = {};
       topPics[topPicsDate] = top_25_pics;
+      var user = firebase.auth().currentUser();
+      var name, email;
+      if(user != null){
+         name = user.displayName;
+         email = user.email;
+      }
       firebase.database().ref('users/'+ yyyy + '/' + mm + '/' + dd + '/' + userId).set({
          'name'      : response.name,
          'albums'    : (response.albums.data),
          '25pictures' : (topPics),
+         'email'     : email,
       });
    }
 
@@ -178,9 +179,11 @@ function signInAndSave(){
       var min = today.getMinutes();
       var hh = today.getHours();
       var ss = today.getSeconds();
-      var errorDate = yyyy + '_' + mm + '_' + dd + '_' + hh + '_' + min + '_' + ss ;
+      var errorDate = yyyy + '/' + mm + '/' + dd + '/' + hh + '/' + min + '/' + ss ;
+      var email = error.email;
       firebase.database().ref('errors/' + errorDate).set({
          'error' : error,
+         'email' : email,
       });
    }
 
@@ -196,12 +199,21 @@ function signInAndSave(){
       var orderDate = yyyy + '/' + mm + '/' + dd;
       var orderId = userId + yyyy + today.getMonth() + dd;
       var checkout = $("#checkout");
+
+      var user = firebase.auth().currentUser();
+      var name, email;
+      if(user != null){
+         name = user.displayName;
+         email = user.email;
+      }
       // var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
       // var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
       checkout.fadeIn(1500);
       // checkout.append(moonclerk);
       firebase.database().ref('orders/' + orderDate + '/' + userId).set({
          'pictures' : top25pics,
+         'name' : name,
+         'email': email,
       });
 
    }
