@@ -143,7 +143,7 @@ function logout(){
 function writeUserData(userId, response, top_25_pics) {
    var today = new Date();
    var dd = today.getDate();
-   var mm = getMonthNamestoday.getMonth());
+   var mm = getMonthNames(today.getMonth());
    var yyyy = today.getFullYear();
    var topPicsDate = yyyy + '_' + mm + '_' + dd + '_top_25';
    var topPics = {};
