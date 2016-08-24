@@ -174,7 +174,6 @@ function logErrorsOnDB(error){
    var email = error.email;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
-      'email' : email,
    });
 }
 
