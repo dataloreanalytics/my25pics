@@ -12,10 +12,10 @@ firebase.auth().onAuthStateChanged(function(user) {
       console.log(newPostKey);
       // Write the new post's data simultaneously in the posts list and the user's post list.
       // var updates = {};
-      // updates['/posts/' + newPostKey] = postData;
+      updates['orders/' + orderDate + '/' + userId + '/paid'] = "true";
       // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
       //
-      // return firebase.database().ref().update(updates);
+      firebase.database().ref().update(updates);
    } else {
       // No user is signed in.
       console.log("not logged in");
