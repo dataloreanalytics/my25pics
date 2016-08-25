@@ -28,6 +28,7 @@ function signInAndSave(){
             var allPhotos = getPhotosFromAlbum(response.albums.data);
             var sortedPhotos = _.sortBy( allPhotos, 'likes' ).reverse();
             var top_25 = [];
+            emptyImagesArray();
             //step2.html("Step 2 : ");
             //var stepText = "<p>This is a simple step, look and appreciate all your pictures after all they are your most liked 25 pictures.</p>";
             //$(stepText).insertAfter(step2);
@@ -128,14 +129,10 @@ function getPhotosFromAlbum(allAlbum){
 
 function logout(){
    firebase.auth().signOut().then(function() {
-      var img_row = $(".img-row");
       $("#logoutRow").fadeOut(200);
       $("#loginRow").fadeIn(5000);
       createAlertDiv("You have been logged out. Thank you for using my25pics.", true);
-      for( var i = 0; i < img_row.length; i++){
-         img_row.eq(i).empty();
-      }
-      var step2 = $("#step2");
+      emptyImagesArray();
       // step2..empty();
    }, function(error) {
       // An error happened.
@@ -143,6 +140,12 @@ function logout(){
    });
 }
 
+function emptyImagesArray(){
+   var img_row = $(".img-row");
+   for( var i = 0; i < img_row.length; i++){
+      img_row.eq(i).empty();
+   }
+}
 function writeUserData(userId, response, top_25_pics) {
    var topPicsDate = getTopPicsDate();
    var topPics = {};
@@ -184,7 +187,7 @@ function generateOrder(){
    firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' +
    getTopPicsDate()).once('value').then(function(snapshot)
    {
-      var top25pics = napshot.val();
+      var top25pics = snapshot.val();
       generateOrderOnDb(uid, top25pics);
 
    });
