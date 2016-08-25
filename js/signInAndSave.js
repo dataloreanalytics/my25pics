@@ -184,7 +184,9 @@ function generateOrder(){
    firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' +
    getTopPicsDate()).once('value').then(function(snapshot)
    {
-      console.log(snapshot.val())
+      var top25pics = napshot.val();
+      generateOrderOnDb(uid, top25pics);
+
    });
 }
 
