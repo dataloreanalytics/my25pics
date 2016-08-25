@@ -1,6 +1,6 @@
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid;
-
+console.log(user);
 if (user != null) {
    name = user.displayName;
    email = user.email;
