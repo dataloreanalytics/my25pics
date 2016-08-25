@@ -180,8 +180,12 @@ function generateOrder(){
       uid  = user.uid;
    }
    // console.log(user);
-   console.log(firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' + getTopPicsDate()));
-
+   //console.log(firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' + getTopPicsDate()));
+   firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' +
+   getTopPicsDate()).once('value').then(function(snapshot)
+   {
+      console.log(snapshot.val())
+   });
 }
 
 function generateOrderOnDb(userId, top25pics){
