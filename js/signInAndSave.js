@@ -204,6 +204,7 @@ function generateOrderOnDb(userId, top25pics){
       'pictures' : top25pics,
       'name' : name,
       'email': email,
+      'paid' : 'false'
    });
 }
 
