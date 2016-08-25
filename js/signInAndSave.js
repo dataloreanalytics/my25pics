@@ -195,7 +195,6 @@ function generateOrder(){
 
 function generateOrderOnDb(userId, top25pics){
    var orderDate = getTodayDatePath();
-   var orderId = userId + yyyy + today.getMonth() + dd;
    var user = firebase.auth().currentUser;
    var name, email;
    if(user != null){
