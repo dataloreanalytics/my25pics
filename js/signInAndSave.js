@@ -1,6 +1,3 @@
-$(window).on('beforeunload', function(){
-   socket.close();
-});
 function signInAndSave(){
    var provider = new firebase.auth.FacebookAuthProvider();
    provider.addScope('user_photos');
@@ -62,6 +59,8 @@ function signInAndSave(){
             $("#logoutRow").fadeIn(1000);
             //orderId(userId, top_25);
             // createAlertDiv("Succesfully logged in", true);
+            var checkout = $("#checkout");
+            checkout.fadeIn(1500);
          }
 
       );
@@ -189,8 +188,6 @@ function orderId(userId, top25pics){
    var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
    var orderId = userId + yyyy + today.getMonth() + dd;
-   var checkout = $("#checkout");
-
    var user = firebase.auth().currentUser;
    var name, email;
    if(user != null){
@@ -199,7 +196,6 @@ function orderId(userId, top25pics){
    }
    // var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
    // var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
-   checkout.fadeIn(1500);
    // checkout.append(moonclerk);
    firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'pictures' : top25pics,
