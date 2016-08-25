@@ -180,7 +180,7 @@ function generateOrder(){
       uid  = user.uid;
    }
    // console.log(user);
-   console.log(firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' + getTopPicsDate());
+   console.log(firebase.database().ref('users/'  + getTodayDatePath() + '/' + uid + '/' + '25pictures/' + getTopPicsDate()));
 
 }
 
