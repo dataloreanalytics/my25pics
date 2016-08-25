@@ -5,7 +5,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     var orderDate = getTodayDatePath();
     firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'paid' : "true",
-      'test' : 'test',
    });
   } else {
     // No user is signed in.

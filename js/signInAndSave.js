@@ -189,7 +189,6 @@ function generateOrder(){
    {
       var top25pics = snapshot.val();
       generateOrderOnDb(uid, top25pics);
-
    });
 }
 
@@ -205,7 +204,6 @@ function generateOrderOnDb(userId, top25pics){
       'pictures' : top25pics,
       'name' : name,
       'email': email,
-      'paid' : 'false'
    });
 }
 
