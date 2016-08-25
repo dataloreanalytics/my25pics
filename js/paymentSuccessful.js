@@ -11,7 +11,6 @@ firebase.auth().onAuthStateChanged(function(user) {
       var newPostKey = firebase.database().ref().child('orders/' + orderDate + '/' + userId + '/paid').push().key;
       console.log(newPostKey);
       // Write the new post's data simultaneously in the posts list and the user's post list.
-       var updates = {"paid" : "yes"};
       updates['orders/' + orderDate + '/' + userId + '/paid'] = "true";
       // updates['/user-posts/' + uid + '/' + newPostKey] = postData;
       //
