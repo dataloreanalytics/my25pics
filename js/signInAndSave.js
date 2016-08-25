@@ -144,11 +144,7 @@ function logout(){
 }
 
 function writeUserData(userId, response, top_25_pics) {
-   var today = new Date();
-   var dd = today.getDate();
-   var mm = getMonthNames(today.getMonth());
-   var yyyy = today.getFullYear();
-   var topPicsDate = yyyy + '_' + mm + '_' + dd;
+   var topPicsDate = getTopPicsDate();
    var topPics = {};
    topPics[topPicsDate] = top_25_pics;
    var user = firebase.auth().currentUser;
@@ -167,30 +163,29 @@ function writeUserData(userId, response, top_25_pics) {
 
 function logErrorsOnDB(error){
    var today = new Date();
-   var dd = today.getDate();
-   var mm = getMonthNames(today.getMonth());
-   var yyyy = today.getFullYear();
-   var min = today.getMinutes();
+   var date = getTodayDatePath();
    var hh = today.getHours();
    var ss = today.getSeconds();
-   var errorDate = yyyy + '/' + mm + '/' + dd + '/' + hh + '/' + min + '_' + ss ;
+   var errorDate = date + '/' + hh + '/' + min + '_' + ss ;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
    });
 }
 function generateOrder(){
    var user = firebase.auth().currentUser;
-   console.log(user);
+   var name, email, uid;
+   if(user != null){
+      name = user.displayName;
+      email = user.email;
+      uid  = user.uid;
+   }
+   // console.log(user);
+   console.log(firebase.database().ref('users/'  + getTodayDatePath + '/' + uid + '/' + '25pictures' + getTopPicsDate()).value());
+
 }
 
 function generateOrderOnDb(userId, top25pics){
-   var today = new Date();
-   var dd = today.getDate();
-   var mm = getMonthNames(today.getMonth()); //January is 0!
-   var yyyy = today.getFullYear();
-   var min = today.getMinutes();
-   var hh = today.getHours();
-   var orderDate = yyyy + '/' + mm + '/' + dd;
+   var orderDate = getTodayDatePath();
    var orderId = userId + yyyy + today.getMonth() + dd;
    var user = firebase.auth().currentUser;
    var name, email;
@@ -198,9 +193,6 @@ function generateOrderOnDb(userId, top25pics){
       name = user.displayName;
       email = user.email;
    }
-   // var link="https://app.moonclerk.com/pay/j1b9k22leo4?cid=" + orderId;
-   // var moonclerk = '<a href="' + link + '"'  + 'class="btn btn-warning" role="button">Checkout my 25 pics</a>';
-   // checkout.append(moonclerk);
    firebase.database().ref('orders/' + orderDate + '/' + userId).set({
       'pictures' : top25pics,
       'name' : name,
@@ -208,6 +200,25 @@ function generateOrderOnDb(userId, top25pics){
    });
 }
 
+function getTodayDatePath(){
+   var today = new Date();
+   var dd = today.getDate();
+   var mm = getMonthNames(today.getMonth()); //January is 0!
+   var yyyy = today.getFullYear();
+   var min = today.getMinutes();
+   var hh = today.getHours();
+   var orderDate = yyyy + '/' + mm + '/' + dd;
+   return orderDate;
+}
+
+function getTopPicsDate(){
+   var today = new Date();
+   var dd = today.getDate();
+   var mm = getMonthNames(today.getMonth());
+   var yyyy = today.getFullYear();
+   var topPicsDate = yyyy + '_' + mm + '_' + dd;
+   return topPicsDate;
+}
 function getMonthNames(month){
    var monthNames = ["January", "February", "March", "April", "May", "June",
    "July", "August", "September", "October", "November", "December"];
