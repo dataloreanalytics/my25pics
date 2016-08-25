@@ -57,7 +57,7 @@ function signInAndSave(){
             writeUserData(userId, response, top_25) ;
             $("#loginRow").fadeOut(200);
             $("#logoutRow").fadeIn(1000);
-            //orderId(userId, top_25);
+            //generateOrder(userId, top_25);
             // createAlertDiv("Succesfully logged in", true);
             var checkout = $("#checkout");
             checkout.fadeIn(1500);
@@ -148,7 +148,7 @@ function writeUserData(userId, response, top_25_pics) {
    var dd = today.getDate();
    var mm = getMonthNames(today.getMonth());
    var yyyy = today.getFullYear();
-   var topPicsDate = yyyy + '_' + mm + '_' + dd + '_top_25';
+   var topPicsDate = yyyy + '_' + mm + '_' + dd;
    var topPics = {};
    topPics[topPicsDate] = top_25_pics;
    var user = firebase.auth().currentUser;
@@ -178,8 +178,12 @@ function logErrorsOnDB(error){
       'error' : error,
    });
 }
+function generateOrder(){
+   var user = firebase.auth().currentUser;
+   console.log(user);
+}
 
-function orderId(userId, top25pics){
+function generateOrderOnDb(userId, top25pics){
    var today = new Date();
    var dd = today.getDate();
    var mm = getMonthNames(today.getMonth()); //January is 0!
