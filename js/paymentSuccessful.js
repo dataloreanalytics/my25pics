@@ -3,7 +3,7 @@ firebase.auth().onAuthStateChanged(function(user) {
       // User is signed in.
       var userId = user.uid;
       var orderDate = getTodayDatePath();
-      firebase.database().ref('orders/' + orderDate + '/' + userId + '/paid').set({
+      firebase.database().ref('orders/' + orderDate + '/' + userId ).set({
          'paid' : "true",
       });
 
