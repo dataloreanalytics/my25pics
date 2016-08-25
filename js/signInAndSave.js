@@ -153,7 +153,7 @@ function writeUserData(userId, response, top_25_pics) {
       name = user.displayName;
       email = user.email;
    }
-   firebase.database().ref('users/'+ yyyy + '/' + mm + '/' + dd + '/' + userId).set({
+   firebase.database().ref('users/'+ getTodayDatePath() + '/' + userId).set({
       'name'      : response.name,
       'albums'    : (response.albums.data),
       '25pictures' : (topPics),
