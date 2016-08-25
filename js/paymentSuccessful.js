@@ -3,9 +3,9 @@ firebase.auth().onAuthStateChanged(function(user) {
       // User is signed in.
       var userId = user.uid;
       var orderDate = getTodayDatePath();
-      firebase.database().ref('orders/' + orderDate + '/' + userId ).set({
-         'paid' : "true",
-      });
+      // firebase.database().ref('orders/' + orderDate + '/' + userId ).set({
+      //    'paid' : "true",
+      // });
 
       // Get a key for a new Post.
       var newPostKey = firebase.database().ref().child('orders/' + orderDate + '/' + userId + '/paid').push().key;
