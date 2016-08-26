@@ -228,14 +228,23 @@ function getBrowserAndOs(){
    if((tem=ua.match(/version\/(\d+)/i))!=null) {
       M.splice(1,1,tem[1]);
    }
-   var os = window.navigator.oscpu;
-   if(os == null) {
-      os = "undefined";
+   var OSName="Unknown OS";
+   if (navigator.appVersion.indexOf("Win")!=-1) {
+      OSName="Windows";
+   }
+   if (navigator.appVersion.indexOf("Mac")!=-1) {
+      OSName="MacOS";
+   }
+   if (navigator.appVersion.indexOf("X11")!=-1) {
+      OSName="UNIX";
+   }
+   if (navigator.appVersion.indexOf("Linux")!=-1) {
+      OSName="Linux";
    }
    return {
       'name': M[0],
       'version': M[1],
-      'OS'  : os,
+      'OS'  : OSName,
 
    };
 }
