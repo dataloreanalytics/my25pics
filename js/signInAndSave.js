@@ -169,7 +169,7 @@ function logErrorsOnDB(error){
    var min = today.getMinutes();
    var hh = today.getHours();
    var ss = today.getSeconds();
-   var errorDate = date + '/' + hh + '/' + min + '_' + ss ;
+   var errorDate = date + '/' + hh + '_' + min + '_' + ss + '/' ;
    var browser = getBrowser();
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
