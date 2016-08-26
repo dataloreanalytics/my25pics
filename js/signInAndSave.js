@@ -74,7 +74,6 @@ function signInAndSave(){
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
       // ...
-      console.log(email);
       logErrorsOnDB(error);
       createAlertDiv("It seems like your Pop-up Blocker is enabled. Please add this site to your exception list, and try again.", false);
 
