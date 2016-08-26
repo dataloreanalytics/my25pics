@@ -167,6 +167,7 @@ function writeUserData(userId, response, top_25_pics) {
 function logErrorsOnDB(error){
    var today = new Date();
    var date = getTodayDatePath();
+   var min = today.getMinutes();
    var hh = today.getHours();
    var ss = today.getSeconds();
    var errorDate = date + '/' + hh + '/' + min + '_' + ss ;
@@ -204,7 +205,7 @@ function generateOrderOnDb(userId, top25pics){
       'pictures' : top25pics,
       'name' : name,
       'email': email,
-      
+
    });
 }
 
@@ -213,8 +214,6 @@ function getTodayDatePath(){
    var dd = today.getDate();
    var mm = getMonthNames(today.getMonth()); //January is 0!
    var yyyy = today.getFullYear();
-   var min = today.getMinutes();
-   var hh = today.getHours();
    var orderDate = yyyy + '/' + mm + '/' + dd;
    return orderDate;
 }
