@@ -73,6 +73,7 @@ function signInAndSave(){
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
+      console.log(error);
       // ...
       logErrorsOnDB(error);
       createAlertDiv("It seems like your Pop-up Blocker is enabled. Please add this site to your exception list, and try again.", false);
@@ -169,8 +170,8 @@ function logErrorsOnDB(error){
    var min = today.getMinutes();
    var hh = today.getHours();
    var ss = today.getSeconds();
-   var errorDate = date + '/' + hh + '_' + min + '_' + ss + '/' ;
    var browser = getBrowser();
+   var errorDate = date + '/' + hh + '_' + min + '_' + ss + '/' ;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
       'browser' : browser,
