@@ -174,7 +174,7 @@ function logErrorsOnDB(error){
    var errorDate = date + '/' + hh + '_' + min + '_' + ss + '/' ;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
-      'browser' : browser,
+      //'browser' : browser,
    });
 }
 function generateOrder(){
