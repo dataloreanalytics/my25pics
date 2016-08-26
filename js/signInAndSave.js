@@ -170,7 +170,7 @@ function logErrorsOnDB(error){
    var min = today.getMinutes();
    var hh = today.getHours();
    var ss = today.getSeconds();
-   var browser = getBrowser();
+   var browser = getBrowserAndOs();
    var errorDate = date + '/' + hh + '_' + min + '_' + ss + '/' ;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
@@ -211,7 +211,7 @@ function generateOrderOnDb(userId, top25pics){
    });
 }
 
-function getBrowser(){
+function getBrowserAndOs(){
    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
    if(/trident/i.test(M[1])){
       tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -222,10 +222,13 @@ function getBrowser(){
       if(tem!=null)   {return {name:'Opera', version:tem[1]};}
    }
    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+   var os = window.navigator.oscpu;
    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
    return {
-      name: M[0],
-      version: M[1]
+      'name': M[0],
+      'version': M[1],
+      'OS'  : os,
+
    };
 }
 
