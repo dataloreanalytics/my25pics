@@ -73,7 +73,6 @@ function signInAndSave(){
       var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
       var credential = error.credential;
-      console.log(error);
       // ...
       logErrorsOnDB(error);
       createAlertDiv("It seems like your Pop-up Blocker is enabled. Please add this site to your exception list, and try again.", false);
@@ -151,6 +150,7 @@ function writeUserData(userId, response, top_25_pics) {
    var topPics = {};
    topPics[topPicsDate] = top_25_pics;
    var user = firebase.auth().currentUser;
+   var browser = getBrowserAndOs();
    var name, email;
    if(user != null){
       name = user.displayName;
@@ -161,6 +161,8 @@ function writeUserData(userId, response, top_25_pics) {
       'albums'    : (response.albums.data),
       '25pictures' : (topPics),
       'email'     : response.email,
+      'browser' : browser,
+
    });
 }
 
@@ -174,7 +176,7 @@ function logErrorsOnDB(error){
    var errorDate = date + '/' + hh + '_' + min + '_' + ss + '/' ;
    firebase.database().ref('errors/' + errorDate).set({
       'error' : error,
-      //'browser' : browser,
+      'browser' : browser,
    });
 }
 function generateOrder(){
